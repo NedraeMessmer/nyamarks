@@ -10,7 +10,7 @@
       <p>{{link.description}}</p>
     </div>
     <div class="tags">
-      <p><span v-for="tag in link.tags">{{tag}} </span></p>
+      <tag-pill v-for="(tag, index) in link.tags" v-bind:tagname="tag" v-bind:key="index"></tag-pill>
     </div>
     <div class="remove">
       <p><button v-on:click="removeLink(linkId)">Delete</button></p>

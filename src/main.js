@@ -3,8 +3,13 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import App from './App';
+
 import router from './router';
 import linkStore from './link-store';
+
+// Components
+import TagPill from '@/components/TagPill';
+Vue.component('tagPill', TagPill);
 
 Vue.use(Vuex);
 Vue.config.productionTip = false;
