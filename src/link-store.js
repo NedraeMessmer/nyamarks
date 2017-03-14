@@ -57,7 +57,11 @@ const linkStore = {
     },
 
     updateLink(state, payload) {
-      return state.links[payload.index] = payload.link;
+      return state.links.splice(payload.index, 1, payload.link);
+    },
+
+    loadLinks(state, payload) {
+      return state.links = payload.links;
     },
   },
 
@@ -65,6 +69,10 @@ const linkStore = {
     getLink: (state) => (index) => state.links[index],
 
     getTaggedLinks: (state) => (tags) => {
+      if (!tags || tags.length === 0) {
+        return state.links;
+      }
+
       return state.links.filter((link) => {
         return link.tags.some((val) => {
           return tags.indexOf(val) >= 0;
