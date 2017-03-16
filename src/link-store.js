@@ -44,33 +44,39 @@ const linkStore = {
   },
 
   mutations: {
-    addLink(state, payload) {
-      const link = payload.link;
-
+    addLink(state, {link}) {
       link.tags = link.tags.split(' ');
 
       return state.links.push(link);
     },
 
-    removeLink(state, payload) {
-      return state.links.splice(payload.index, 1);
+    removeLink(state, {index}) {
+      return state.links.splice(index, 1);
     },
 
-    updateLink(state, payload) {
-      return state.links.splice(payload.index, 1, payload.link);
+    updateLink(state, {index, link}) {
+      link.tags = link.tags.split(' ');
+
+      return state.links.splice(index, 1, link);
     },
 
-    loadLinks(state, payload) {
-      return state.links = payload.links;
+    loadLinks(state, {links}) {
+      return state.links = links;
     },
   },
 
   getters: {
-    getLink: (state) => (index) => state.links[index],
+    getLink: state => index => {
+      const link = {...state.links[index]};
+
+      link.tags = link.tags.join(' ');
+
+      return link;
+    },
 
     getTaggedLinks: (state) => (tags) => {
       if (!tags || tags.length === 0) {
-        return state.links;
+        return [...state.links];
       }
 
       return state.links.filter((link) => {
@@ -78,6 +84,12 @@ const linkStore = {
           return tags.indexOf(val) >= 0;
         });
       });
+    },
+
+    getMatchingLinks: state => query => {
+      query;
+
+      return [...state.links];
     },
   },
 }

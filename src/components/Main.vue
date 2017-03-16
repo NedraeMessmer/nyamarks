@@ -2,7 +2,7 @@
   <div class="hello">
     <h1>{{welcome}}</h1>
 
-    <form name="newLink" v-on:submit="addLink">
+    <form class="newLink" name="newLink" v-on:submit.prevent="addLink">
       <h2>Add new link</h2>
 
       <p><input placeholder="Name" v-model="newLink.name"></p>
@@ -22,11 +22,14 @@
     </div>
 
     <div>
-      <button v-on:click="saveToDisk">Save links</button>
+      <button v-on:click="saveToDisk">Save to disk</button>
+      <button v-on:click="saveToLocalStorage">Save to localStorage</button>
 
-      <form name="loadLinks">
+      <form name="loadLinks" v-on:submit.prevent>
         <input id="file" type="file" accept="application/json,.json">
         <button v-on:click="loadFromDisk">Load links</button>
+        <button v-on:click="loadFromLocalStorage">Load from localStorage</button>
+        <button v-on:click="clearLocalStorage">Clear localStorage</button>
       </form>
     </div>
   </div>
@@ -49,7 +52,6 @@ export default {
       const link = {...this.newLink};
       const form = document.forms.newLink;
 
-      // this.newLink = {...emptyLink};
       form.reset();
 
       return this.$store.commit({
@@ -88,6 +90,31 @@ export default {
 
       contents.readAsText(file);
     },
+
+    saveToLocalStorage() {
+      const links = JSON.stringify(this.$store.state.links);
+
+      return localStorage.setItem('nyamarks', links);
+    },
+
+    loadFromLocalStorage() {
+      const json = localStorage.getItem('nyamarks');
+
+      if (!json) {
+        return false;
+      }
+
+      const links = JSON.parse(json);
+
+      return this.$store.commit({
+        type: 'loadLinks',
+        links,
+      });
+    },
+
+    clearLocalStorage() {
+      return localStorage.removeItem('nyamarks');
+    },
   },
   components: {
     linkList,
@@ -95,9 +122,14 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss">
 h1, h2 {
   font-weight: normal;
+}
+
+.newLink {
+  input, textarea {
+    width: 25vw;
+  }
 }
 </style>

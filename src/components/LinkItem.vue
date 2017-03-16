@@ -10,10 +10,14 @@
       <p>{{link.description}}</p>
     </div>
     <div class="tags">
-      <tag-pill v-for="(tag, index) in link.tags" v-bind:tagname="tag" v-bind:key="index"></tag-pill>
+      <tag-pill
+        v-for="(tag, index) in link.tags"
+        v-bind:tagname="tag"
+        v-bind:key="index"></tag-pill>
     </div>
-    <div class="remove">
-      <p><button v-on:click="removeLink(linkId)">Delete</button></p>
+    <div class="actions">
+      <router-link v-bind:to="editLink">Edit</router-link>
+      <button v-on:click="removeLink(linkId)">Delete</button>
     </div>
   </div>
 </template>
@@ -22,6 +26,14 @@
 export default {
   name: 'LinkItem',
   props: ['link', 'linkId'],
+  data() {
+    return {
+      editLink: {
+        name: 'EditLink',
+        params: {id: this.linkId},
+      },
+    }
+  },
   methods: {
     removeLink(index) {
       return this.$store.commit({
@@ -33,13 +45,45 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .link-item {
   display: flex;
-}
+  text-align: left;
 
-.link-item > div {
-  flex: 1 1 auto;
-  border: 1px solid green;
+  > div {
+    border: 1px solid green;
+    flex: 1 1 auto;
+    padding: 10px;
+    width: 20%;
+  }
+
+  .tags,
+  .actions {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .actions {
+    a, button {
+      background-color: rgba(64, 0, 192, 0.8);
+      border: none;
+      border-radius: 2px;
+      color: white;
+      cursor: pointer;
+      font-family: 'Lato', sans-serif;
+      font-size: 1em;
+      display: inline-block;
+      margin: 2px;
+      padding: 5px;
+      text-decoration: none;
+      text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.2s ease-in;
+
+      &:hover {
+        background-color: rgba(128, 0, 128, 0.8);
+      }
+    }
+  }
 }
 </style>

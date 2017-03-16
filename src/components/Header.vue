@@ -1,10 +1,12 @@
 <template>
   <div id="header">
     <div>
-      <h2>nyamarks</h2>
+      <h2>
+        <router-link to="/">nyamarks</router-link>
+      </h2>
     </div>
     <div>
-      <p>Right side text</p>
+      <p>Portable bookmarks</p>
     </div>
   </div>
 </template>
@@ -18,10 +20,11 @@ export default {
 <style scoped>
 #header {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #header > div {
-  flex: 1 1 auto;
-  justify-content: space-between;
+  width: 20%;
 }
 </style>
