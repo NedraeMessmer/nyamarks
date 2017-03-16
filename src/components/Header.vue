@@ -17,14 +17,20 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 #header {
+  align-items: center;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-}
+  text-align: center;
 
-#header > div {
-  width: 20%;
+  > div {
+    width: 20%;
+  }
+
+  h2 a {
+    color: rgba(64, 0, 192, 0.6);
+    text-decoration: none;
+  }
 }
 </style>

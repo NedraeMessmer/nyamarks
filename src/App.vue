@@ -20,6 +20,5 @@ export default {
 #app {
   color: #2c3e50;
   font-family: 'Lato', Helvetica, Arial, sans-serif;
-  text-align: center;
 }
 </style>

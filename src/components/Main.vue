@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div id="main">
     <h1>{{welcome}}</h1>
 
     <form class="newLink" name="newLink" v-on:submit.prevent="addLink">
@@ -123,6 +123,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+#main {
+  text-align: center;
+}
+
 h1, h2 {
   font-weight: normal;
 }

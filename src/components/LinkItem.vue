@@ -51,7 +51,6 @@ export default {
   text-align: left;
 
   > div {
-    border: 1px solid green;
     flex: 1 1 auto;
     padding: 10px;
     width: 20%;
@@ -61,6 +60,9 @@ export default {
   .actions {
     align-items: center;
     display: flex;
+  }
+
+  .actions {
     justify-content: center;
   }
 

@@ -1,6 +1,12 @@
 <template>
-  <div class="oh-hai">
-    <form name="editLink" v-on:submit.prevent="updateLink">
+  <div id="edit-link">
+    <div>
+      <router-link v-bind:to="{name: 'Main'}">
+        ← Return
+      </router-link>
+    </div>
+
+    <form class="edit-link-form" name="editLink" v-on:submit.prevent="updateLink">
       <h2>Edit link: {{link.name}}</h2>
 
       <p><input placeholder="Name" v-model="link.name"></p>
@@ -45,11 +51,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
-$color: rgb(32, 64, 128);
-
-.oh-hai {
-  h1 {
-    color: $color;
+#edit-link {
+  h2 {
+    font-weight: normal;
   }
+}
+
+.edit-link-form {
+  text-align: center;
 }
 </style>
