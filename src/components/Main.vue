@@ -22,6 +22,12 @@
     </div>
 
     <div>
+      <h3>Current tags</h3>
+
+      <tag-list></tag-list>
+    </div>
+
+    <div>
       <button v-on:click="saveToDisk">Save to disk</button>
       <button v-on:click="saveToLocalStorage">Save to localStorage</button>
 
@@ -37,6 +43,7 @@
 
 <script>
 import linkList from '@/components/LinkList';
+import tagList from '@/components/TagList';
 
 export default {
   name: 'Main',
@@ -118,6 +125,7 @@ export default {
   },
   components: {
     linkList,
+    tagList,
   },
 }
 </script>

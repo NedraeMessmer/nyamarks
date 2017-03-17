@@ -41,6 +41,16 @@ const linkStore = {
         ],
       },
     ],
+    tags: [
+      'search',
+      'google',
+      'video',
+      'youtube',
+      'bing',
+      'microsoft',
+      'developer',
+      'mozilla',
+    ],
   },
 
   mutations: {
@@ -62,6 +72,36 @@ const linkStore = {
 
     loadLinks(state, {links}) {
       return state.links = links;
+    },
+
+    addTags(state, {tags}) {
+      let normalizedTags;
+
+      if (Array.isArray(tags)) {
+        normalizedTags = tags;
+      } else {
+        normalizedTags = tags.split(' ');
+      }
+
+      const missingTags = normalizedTags.filter(cur => {
+        return !state.tags.includes(cur);
+      });
+
+      return state.tags = state.tags.concat(missingTags);
+    },
+
+    removeTags(state, {tags}) {
+      let normalizedTags;
+
+      if (Array.isArray(tags)) {
+        normalizedTags = tags;
+      } else {
+        normalizedTags = tags.split(' ');
+      }
+
+      return state.tags = state.tags.filter(cur => {
+        return !normalizedTags.includes(cur);
+      });
     },
   },
 
