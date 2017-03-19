@@ -4,7 +4,7 @@
       <p>{{link.name}}</p>
     </div>
     <div class="url">
-      <p><a v-bind:href="link.url">{{link.url}}</a></p>
+      <p><a v-bind:href="link.url" target="_blank">{{link.url}}</a></p>
     </div>
     <div class="description">
       <p>{{link.description}}</p>
@@ -71,15 +71,16 @@ export default {
       background-color: rgba(64, 0, 192, 0.8);
       border: none;
       border-radius: 2px;
+      box-shadow: inset 0 -3px rgba(0, 0, 0, 0.5);
       color: white;
       cursor: pointer;
       font-family: 'Lato', sans-serif;
       font-size: 1em;
       display: inline-block;
       margin: 2px;
-      padding: 5px;
+      padding: 5px 8px 8px;
       text-decoration: none;
-      text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
+      text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
       transition: background-color 0.2s ease-in;
 
       &:hover {

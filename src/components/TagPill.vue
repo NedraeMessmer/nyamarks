@@ -1,8 +1,8 @@
 <template>
-  <p class="tag-pill">
-    {{tagname}}
+  <div class="tag-pill">
+    <span>{{tagname}}</span>
     <button class="delete" v-on:click="deletePill" v-if="deletable">X</button>
-  </p>
+  </div>
 </template>
 
 <script>
@@ -18,23 +18,33 @@ export default {
 
 <style scoped lang="scss">
 .tag-pill {
+  align-items: center;
+  justify-content: space-between;
   background-color: rgba(192, 0, 64, 0.8);
   border-radius: 2px;
   color: white;
-  display: inline-block;
+  display: inline-flex;
   margin: 2px;
-  padding: 5px;
+  height: 28px;
   text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
 
-  .delete {
+  > span {
+    display: block;
+    margin-left: 6px;
+    margin-right: 6px;
+  }
+
+  > .delete {
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 2px;
     border: none;
     color: inherit;
-    font-weight: bold;
-    margin-left: 5px;
     cursor: pointer;
+    font-weight: bold;
+    height: 28px;
+    padding: 0;
     transition: background-color 0.2s ease-in;
+    width: 28px;
 
     &:hover {
       background-color: rgba(0, 0, 0, 0.6);
