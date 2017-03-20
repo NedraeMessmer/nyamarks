@@ -1,4 +1,4 @@
-const linkStore = {
+export default {
   state: {
     links: [
       {
@@ -133,5 +133,3 @@ const linkStore = {
     },
   },
 }
-
-export default linkStore;
