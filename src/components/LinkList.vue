@@ -1,7 +1,7 @@
 <template>
   <div class="link-list-container">
     <div class="link-list-filters">
-      <p><input v-model.lazy="search" placeholder="Search..."></p>
+      <p><input v-model.trim.lazy="search" placeholder="Search..."></p>
     </div>
 
     <div class="link-list">

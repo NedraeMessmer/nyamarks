@@ -2,18 +2,18 @@
   <div class="tag-list-container">
     <div class="tag-list">
       <tag-pill
-        v-for="(tag, index) in tags"
-        v-bind:tagname="tag"
-        v-bind:key="index"
+        v-for="tag in tags"
+        v-bind:tagname="tag.name"
+        v-bind:key="tag.id"
         v-bind:deletable="true"
-        v-on:delete-pill="removeTag([tag])"
+        v-on:delete-pill="removeTag(tag.id)"
         ></tag-pill>
     </div>
 
-    <p>
-      <input v-model="newTags" placeholder="Tags">
-      <button v-on:click="addTags">Add tags</button>
-    </p>
+    <form v-on:submit.prevent="addTags">
+      <input v-model.trim="newTags" placeholder="Tags">
+      <button type="submit">Add tags</button>
+    </form>
   </div>
 </template>
 
@@ -35,7 +35,13 @@ export default {
   },
   methods: {
     addTags() {
+      if (this.newTags === '') {
+        return false;
+      }
+
       const tags = this.newTags.split(' ');
+
+      this.newTags = '';
 
       return this.$store.commit({
         type: 'addTags',
@@ -43,10 +49,10 @@ export default {
       });
     },
 
-    removeTag(tags) {
+    removeTag(id) {
       return this.$store.commit({
-        type: 'removeTags',
-        tags,
+        type: 'removeTag',
+        id,
       });
     },
   },

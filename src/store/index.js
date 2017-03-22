@@ -42,22 +42,34 @@ export default {
       },
     ],
     tags: [
-      'search',
-      'google',
-      'video',
-      'youtube',
-      'bing',
-      'microsoft',
-      'developer',
-      'mozilla',
+      {id: 0, name: 'search'},
+      {id: 1, name: 'google'},
+      {id: 2, name: 'video'},
+      {id: 3, name: 'youtube'},
+      {id: 4, name: 'bing'},
+      {id: 5, name: 'microsoft'},
+      {id: 6, name: 'developer'},
+      {id: 7, name: 'mozilla'},
     ],
+
+    // Special tracking of IDs
+    $tracking: {
+      links: 3,
+      tags: 7,
+    },
   },
 
   mutations: {
     addLink(state, {link}) {
-      link.tags = link.tags.split(' ');
+      const currentLinks = [...this.state.links];
 
-      return state.links.push(link);
+      if (link.tags) {
+        link.tags = link.tags.split(' ');
+      } else {
+        link.tags = [];
+      }
+
+      return state.links = [...currentLinks, link];
     },
 
     removeLink(state, {index}) {
@@ -75,32 +87,49 @@ export default {
     },
 
     addTags(state, {tags}) {
-      let normalizedTags;
+      const currentTags = [...state.tags];
+      const nextId = state.$tracking.tags;
 
-      if (Array.isArray(tags)) {
-        normalizedTags = tags;
-      } else {
-        normalizedTags = tags.split(' ');
+      // Function to check if tag already exists
+      function tagExists(tag) {
+        const currentTagNames = currentTags.map(cur => cur.name);
+
+        return currentTagNames.includes(tag);
       }
 
-      const missingTags = normalizedTags.filter(cur => {
-        return !state.tags.includes(cur);
+      // Remove duplicates from array
+      const newTags = tags.filter((cur, index, self) => {
+        return index === self.indexOf(cur);
       });
 
-      return state.tags = state.tags.concat(missingTags);
+      // Discard tags that already exist
+      const missingTags = newTags.filter(tag => {
+        return !tagExists(tag);
+      });
+
+      // Build tag objects with IDs
+      const tagsWithId = missingTags.reduce((prev, next) => {
+        return [
+          ...prev,
+          {
+            name: next,
+            id: nextId + 1,
+          },
+        ];
+      }, []);
+
+      // Update tag tracking
+      state.$tracking.tags = nextId + tagsWithId.length;
+
+      // Update tags
+      state.tags = [...currentTags, ...tagsWithId];
+
+      return state;
     },
 
-    removeTags(state, {tags}) {
-      let normalizedTags;
-
-      if (Array.isArray(tags)) {
-        normalizedTags = tags;
-      } else {
-        normalizedTags = tags.split(' ');
-      }
-
-      return state.tags = state.tags.filter(cur => {
-        return !normalizedTags.includes(cur);
+    removeTag(state, {id}) {
+      return state.tags = state.tags.filter(tag => {
+        return tag.id !== id;
       });
     },
   },
@@ -114,13 +143,13 @@ export default {
       return link;
     },
 
-    getTaggedLinks: (state) => (tags) => {
+    getTaggedLinks: state => tags => {
       if (!tags || tags.length === 0) {
         return [...state.links];
       }
 
-      return state.links.filter((link) => {
-        return link.tags.some((val) => {
+      return state.links.filter(link => {
+        return link.tags.some(val => {
           return tags.indexOf(val) >= 0;
         });
       });

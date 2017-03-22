@@ -9,11 +9,11 @@
     <form class="edit-link-form" name="editLink" v-on:submit.prevent="updateLink">
       <h2>Edit link: {{link.name}}</h2>
 
-      <p><input placeholder="Name" v-model="link.name"></p>
-      <p><input placeholder="URL (required)" v-model="link.url" required></p>
-      <p><input placeholder="Tags (space-delimited)" v-model="link.tags"></p>
+      <p><input placeholder="Name" v-model.trim="link.name"></p>
+      <p><input placeholder="URL (required)" v-model.trim="link.url" required></p>
+      <p><input placeholder="Tags (space-delimited)" v-model.trim="link.tags"></p>
       <p>
-        <textarea placeholder="Description" v-model="link.description"></textarea>
+        <textarea placeholder="Description" v-model.trim="link.description"></textarea>
       </p>
 
       <button type="submit">Update link</button>

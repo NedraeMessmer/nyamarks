@@ -5,11 +5,11 @@
     <form class="newLink" name="newLink" v-on:submit.prevent="addLink">
       <h2>Add new link</h2>
 
-      <p><input placeholder="Name" v-model="newLink.name"></p>
-      <p><input placeholder="URL (required)" v-model="newLink.url" required></p>
-      <p><input placeholder="Tags (space-delimited)" v-model="newLink.tags"></p>
+      <p><input placeholder="Name" v-model.trim="newLink.name"></p>
+      <p><input placeholder="URL (required)" v-model.trim="newLink.url" required></p>
+      <p><input placeholder="Tags (space-delimited)" v-model.trim="newLink.tags"></p>
       <p>
-        <textarea placeholder="Description" v-model="newLink.description"></textarea>
+        <textarea placeholder="Description" v-model.trim="newLink.description"></textarea>
       </p>
 
       <button type="submit">Add link</button>
@@ -50,9 +50,19 @@ export default {
   data() {
     return {
       welcome: 'Welcome to nyamarks',
-      newLink: {},
+      newLink: {
+        name: '',
+        url: '',
+        tags: [],
+        description: '',
+      },
       fileLoad: null,
     }
+  },
+  computed: {
+    allTags() {
+      return this.$store.state.tags;
+    },
   },
   methods: {
     addLink() {
@@ -84,7 +94,7 @@ export default {
       const contents = new FileReader();
       const form = document.forms.loadLinks;
 
-      contents.onload = (event) => {
+      contents.onload = event => {
         const links = JSON.parse(event.target.result);
 
         this.$store.commit({
