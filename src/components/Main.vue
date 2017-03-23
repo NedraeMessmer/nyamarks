@@ -45,17 +45,19 @@
 import linkList from '@/components/LinkList';
 import tagList from '@/components/TagList';
 
+const newLink = {
+  name: '',
+  url: '',
+  tags: '',
+  description: '',
+};
+
 export default {
   name: 'Main',
   data() {
     return {
       welcome: 'Welcome to nyamarks',
-      newLink: {
-        name: '',
-        url: '',
-        tags: [],
-        description: '',
-      },
+      newLink: {...newLink},
       fileLoad: null,
     }
   },
@@ -69,22 +71,42 @@ export default {
       const link = {...this.newLink};
       const form = document.forms.newLink;
 
-      form.reset();
+      // Normalize tags
+      if (link.tags === '') {
+        link.tags = [];
+      } else {
+        link.tags = link.tags.split(' ');
+      }
 
-      return this.$store.commit({
+      // Reset form
+      form.reset();
+      this.newLink = {...newLink};
+
+      this.$store.dispatch({
         type: 'addLink',
         link,
       });
     },
 
+    stringifyData(state) {
+      const {links, tags, $tracking} = state;
+      const data = {
+        links,
+        tags,
+        $tracking,
+      };
+
+      return JSON.stringify(data);
+    },
+
     saveToDisk() {
-      const links = JSON.stringify(this.$store.state.links);
+      const json = this.stringifyData(this.$store.state);
       const trigger = document.createElement('a');
       const event = new MouseEvent('click', {bubbles: true, cancelable: true});
 
       trigger.setAttribute('download', 'nyamarks.json');
       trigger.setAttribute('href',
-        `data:application/json;charset=utf-8,${encodeURIComponent(links)}`);
+        `data:application/json;charset=utf-8,${encodeURIComponent(json)}`);
 
       return trigger.dispatchEvent(event);
     },
@@ -95,11 +117,11 @@ export default {
       const form = document.forms.loadLinks;
 
       contents.onload = event => {
-        const links = JSON.parse(event.target.result);
+        const data = JSON.parse(event.target.result);
 
         this.$store.commit({
-          type: 'loadLinks',
-          links,
+          type: 'loadData',
+          data,
         });
 
         return form.reset();
@@ -109,9 +131,9 @@ export default {
     },
 
     saveToLocalStorage() {
-      const links = JSON.stringify(this.$store.state.links);
+      const json = this.stringifyData(this.$store.state);
 
-      return localStorage.setItem('nyamarks', links);
+      return localStorage.setItem('nyamarks', json);
     },
 
     loadFromLocalStorage() {
@@ -121,11 +143,11 @@ export default {
         return false;
       }
 
-      const links = JSON.parse(json);
+      const data = JSON.parse(json);
 
       return this.$store.commit({
-        type: 'loadLinks',
-        links,
+        type: 'loadData',
+        data,
       });
     },
 

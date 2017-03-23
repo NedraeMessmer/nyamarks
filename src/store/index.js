@@ -54,20 +54,13 @@ export default {
 
     // Special tracking of IDs
     $tracking: {
-      links: 3,
       tags: 7,
     },
   },
 
   mutations: {
     addLink(state, {link}) {
-      const currentLinks = [...this.state.links];
-
-      if (link.tags) {
-        link.tags = link.tags.split(' ');
-      } else {
-        link.tags = [];
-      }
+      const currentLinks = [...state.links];
 
       return state.links = [...currentLinks, link];
     },
@@ -82,13 +75,21 @@ export default {
       return state.links.splice(index, 1, link);
     },
 
-    loadLinks(state, {links}) {
-      return state.links = links;
+    loadData(state, {data}) {
+      state.links = data.links;
+      state.tags = data.tags;
+      state.$tracking = data.$tracking;
+
+      return state;
     },
 
     addTags(state, {tags}) {
       const currentTags = [...state.tags];
       const nextId = state.$tracking.tags;
+
+      if (currentTags.length === 0) {
+        return null;
+      }
 
       // Function to check if tag already exists
       function tagExists(tag) {
@@ -131,6 +132,15 @@ export default {
       return state.tags = state.tags.filter(tag => {
         return tag.id !== id;
       });
+    },
+  },
+
+  actions: {
+    addLink({commit}, {link}) {
+      const tags = link.tags;
+
+      commit('addLink', {link});
+      commit('addTags', {tags});
     },
   },
 
