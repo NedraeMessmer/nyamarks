@@ -18,7 +18,6 @@
 </template>
 
 <script>
-// import {mapState} from 'vuex';
 import tagPill from '@/components/TagPill';
 
 export default {
@@ -30,7 +29,7 @@ export default {
   },
   computed: {
     tags() {
-      return this.$store.state.tags;
+      return this.$store.getters.getTags();
     },
   },
   methods: {
@@ -50,7 +49,7 @@ export default {
     },
 
     removeTag(id) {
-      return this.$store.commit({
+      return this.$store.dispatch({
         type: 'removeTag',
         id,
       });

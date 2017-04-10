@@ -9,7 +9,8 @@
         v-for="(link, index) in filteredLinks"
         v-bind:link="link"
         v-bind:key="index"
-        v-bind:link-id="index"></link-item>
+        v-bind:link-id="index"
+        v-on:delete-link="removeLink(index)"></link-item>
     </div>
   </div>
 </template>
@@ -28,7 +29,15 @@ export default {
     filteredLinks() {
       const searchTags = (this.search && this.search.split(' ')) || null;
 
-      return this.$store.getters.getTaggedLinks(searchTags);
+      return this.$store.getters.getMatchingLinks(searchTags);
+    },
+  },
+  methods: {
+    removeLink(id) {
+      return this.$store.dispatch({
+        type: 'removeLink',
+        id,
+      });
     },
   },
   components: {

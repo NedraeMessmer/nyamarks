@@ -13,6 +13,7 @@ module.exports = {
     "es6": true,
     "browser": true,
     "jasmine": true,
+    "node": true,
   },
   parser: "babel-eslint",
   parserOptions: {

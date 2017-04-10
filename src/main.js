@@ -5,7 +5,7 @@ import Vuex from 'vuex';
 import App from './App';
 
 import router from './router';
-import vuexStore from './store';
+import vuex from './store';
 
 // Components
 import TagPill from '@/components/TagPill';
@@ -14,7 +14,7 @@ Vue.component('tagPill', TagPill);
 Vue.use(Vuex);
 Vue.config.productionTip = false;
 
-const store = new Vuex.Store(vuexStore);
+const store = new Vuex.Store(vuex);
 
 new Vue({
   el: '#app',

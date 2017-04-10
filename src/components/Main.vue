@@ -32,7 +32,7 @@
       <button v-on:click="saveToLocalStorage">Save to localStorage</button>
 
       <form name="loadLinks" v-on:submit.prevent>
-        <input id="file" type="file" accept="application/json,.json">
+        <input ref="loadFile" type="file" accept="application/json,.json">
         <button v-on:click="loadFromDisk">Load links</button>
         <button v-on:click="loadFromLocalStorage">Load from localStorage</button>
         <button v-on:click="clearLocalStorage">Clear localStorage</button>
@@ -61,10 +61,9 @@ export default {
       fileLoad: null,
     }
   },
-  computed: {
-    allTags() {
-      return this.$store.state.tags;
-    },
+  created() {
+    // Load links from localStorage on startup
+    this.loadFromLocalStorage();
   },
   methods: {
     addLink() {
@@ -88,19 +87,8 @@ export default {
       });
     },
 
-    stringifyData(state) {
-      const {links, tags, $tracking} = state;
-      const data = {
-        links,
-        tags,
-        $tracking,
-      };
-
-      return JSON.stringify(data);
-    },
-
     saveToDisk() {
-      const json = this.stringifyData(this.$store.state);
+      const json = this.$store.getters.getStoreAsJson();
       const trigger = document.createElement('a');
       const event = new MouseEvent('click', {bubbles: true, cancelable: true});
 
@@ -112,15 +100,15 @@ export default {
     },
 
     loadFromDisk() {
-      const file = Array.from(document.querySelectorAll('#file'))[0].files[0];
+      const file = this.$refs.loadFile.files[0];
       const contents = new FileReader();
       const form = document.forms.loadLinks;
 
       contents.onload = event => {
         const data = JSON.parse(event.target.result);
 
-        this.$store.commit({
-          type: 'loadData',
+        this.$store.dispatch({
+          type: 'resetData',
           data,
         });
 
@@ -131,7 +119,7 @@ export default {
     },
 
     saveToLocalStorage() {
-      const json = this.stringifyData(this.$store.state);
+      const json = this.$store.getters.getStoreAsJson();
 
       return localStorage.setItem('nyamarks', json);
     },
@@ -145,8 +133,8 @@ export default {
 
       const data = JSON.parse(json);
 
-      return this.$store.commit({
-        type: 'loadData',
+      return this.$store.dispatch({
+        type: 'resetData',
         data,
       });
     },

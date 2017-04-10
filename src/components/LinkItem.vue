@@ -35,11 +35,8 @@ export default {
     }
   },
   methods: {
-    removeLink(index) {
-      return this.$store.commit({
-        type: 'removeLink',
-        index,
-      });
+    removeLink() {
+      this.$emit('delete-link');
     },
   },
 };
