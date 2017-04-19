@@ -61,10 +61,6 @@ export default {
       fileLoad: null,
     }
   },
-  created() {
-    // Load links from localStorage on startup
-    this.loadFromLocalStorage();
-  },
   methods: {
     addLink() {
       const link = {...this.newLink};
@@ -88,7 +84,7 @@ export default {
     },
 
     saveToDisk() {
-      const json = this.$store.getters.getStoreAsJson();
+      const json = this.$store.getters.storeAsJson();
       const trigger = document.createElement('a');
       const event = new MouseEvent('click', {bubbles: true, cancelable: true});
 
@@ -119,7 +115,7 @@ export default {
     },
 
     saveToLocalStorage() {
-      const json = this.$store.getters.getStoreAsJson();
+      const json = this.$store.getters.storeAsJson();
 
       return localStorage.setItem('nyamarks', json);
     },

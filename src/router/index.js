@@ -17,6 +17,7 @@ export default new Router({
       path: '/edit/:id',
       name: 'EditLink',
       component: EditLink,
+      props: true,
     },
   ],
 })

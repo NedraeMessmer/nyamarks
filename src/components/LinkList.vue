@@ -29,7 +29,7 @@ export default {
     filteredLinks() {
       const searchTags = (this.search && this.search.split(' ')) || null;
 
-      return this.$store.getters.getMatchingLinks(searchTags);
+      return this.$store.getters.matchingLinks(searchTags);
     },
   },
   methods: {

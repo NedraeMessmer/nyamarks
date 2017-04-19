@@ -8,3 +8,6 @@ export const ADD_TAG = 'ADD_TAG';
 export const REMOVE_TAG = 'REMOVE_TAG';
 
 export const RESET_TAGS = 'RESET_TAGS';
+
+export const SHOW_OPTIONS = 'SHOW_OPTIONS';
+export const HIDE_OPTIONS = 'HIDE_OPTIONS';

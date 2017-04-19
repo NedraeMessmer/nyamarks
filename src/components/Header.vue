@@ -3,6 +3,7 @@
     <div>
       <h2>
         <router-link to="/">nyamarks</router-link>
+        <span class="toggle-options" @click="showOptions()">options</span>
       </h2>
     </div>
     <div>
@@ -14,6 +15,11 @@
 <script>
 export default {
   name: 'header',
+  methods: {
+    showOptions() {
+      return this.$store.dispatch('showOptions');
+    },
+  },
 }
 </script>
 
@@ -31,6 +37,17 @@ export default {
   h2 a {
     color: rgba(64, 0, 192, 0.6);
     text-decoration: none;
+  }
+
+  .toggle-options {
+    cursor: pointer;
+    font-size: smaller;
+    opacity: 0.2;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.5;
+    }
   }
 }
 </style>

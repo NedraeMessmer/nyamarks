@@ -19,6 +19,7 @@
 
 <script>
 import tagPill from '@/components/TagPill';
+import {mapGetters} from 'vuex';
 
 export default {
   name: 'TagList',
@@ -28,9 +29,9 @@ export default {
     }
   },
   computed: {
-    tags() {
-      return this.$store.getters.getTags();
-    },
+    ...mapGetters([
+      'tags',
+    ]),
   },
   methods: {
     addTags() {

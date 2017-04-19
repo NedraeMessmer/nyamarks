@@ -1,4 +1,4 @@
-export const getLink = state => index => {
+export const link = state => index => {
   const link = {...state.links.main[index]};
 
   link.tagString = link.tags.join(' ');
@@ -6,7 +6,7 @@ export const getLink = state => index => {
   return link;
 }
 
-export const getTaggedLinks = state => tags => {
+export const taggedLinks = state => tags => {
   if (!tags || tags.length === 0) {
     return [...state.links.main];
   }
@@ -18,17 +18,17 @@ export const getTaggedLinks = state => tags => {
   });
 }
 
-export const getMatchingLinks = state => query => {
+export const matchingLinks = state => query => {
   query;
 
   return [...state.links.main];
 }
 
-export const getTags = state => () => {
+export const tags = state => () => {
   return state.tags.main;
 }
 
-export const getStoreAsJson = state => () => {
+export const storeAsJson = state => () => {
   const links = state.links.main;
   const tags = state.tags.main;
   const $tracking = state.tags.$tracking;

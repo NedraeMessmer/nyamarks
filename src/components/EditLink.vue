@@ -25,26 +25,23 @@
 <script>
 export default {
   name: 'EditLink',
-  data() {
-    return {
-      id: this.$route.params.id,
-    }
-  },
+  props: ['id'],
   computed: {
     link() {
-      return this.$store.getters.getLink(this.id);
+      return this.$store.getters.link(this.id);
     },
   },
   methods: {
     updateLink() {
       const link = {...this.link};
 
-      this.$store.commit({
-        type: 'updateLink',
+      this.$store.dispatch('updateLink', {
+        id: this.id,
         link,
+      })
+      .then(() => {
+        this.$router.push({name: 'Main'});
       });
-
-      this.$router.push({name: 'Main'});
     },
   },
 }
