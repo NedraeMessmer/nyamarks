@@ -8,7 +8,7 @@ export const link = state => index => {
 
 export const taggedLinks = state => tags => {
   if (!tags || tags.length === 0) {
-    return [...state.links.main];
+    return state.links.main;
   }
 
   return state.links.main.filter(link => {
@@ -19,12 +19,36 @@ export const taggedLinks = state => tags => {
 }
 
 export const matchingLinks = state => query => {
-  query;
+  if (!query) {
+    return state.links.main;
+  }
 
-  return [...state.links.main];
+  const search = Array.isArray(query) ? query : query.split(' ');
+
+  return state.links.main.filter(link => {
+    const hasTag = link.tags.some(val => {
+      return search.indexOf(val) >= 0;
+    });
+
+    const hasDescription = search.reduce((prev, cur) => {
+      const str = cur.toLowerCase();
+      const found = link.description.toLowerCase().includes(str);
+
+      return found || prev;
+    }, false);
+
+    const hasTitle = search.reduce((prev, cur) => {
+      const str = cur.toLowerCase();
+      const found = link.name.toLowerCase().includes(str);
+
+      return found || prev;
+    }, false);
+
+    return hasTag || hasDescription || hasTitle;
+  });
 }
 
-export const tags = state => () => {
+export const tags = state => {
   return state.tags.main;
 }
 

@@ -1,12 +1,14 @@
 <template>
   <div class="link-list-container">
     <div class="link-list-filters">
-      <p><input v-model.trim.lazy="search" placeholder="Search..."></p>
+      <p>
+        <input v-model.trim="search" placeholder="Search title, description, tag">
+      </p>
     </div>
 
     <div class="link-list">
       <link-item
-        v-for="(link, index) in filteredLinks"
+        v-for="(link, index) in matchingLinks(this.search)"
         v-bind:link="link"
         v-bind:key="index"
         v-bind:link-id="index"
@@ -17,6 +19,7 @@
 
 <script>
 import linkItem from '@/components/LinkItem';
+import {mapGetters} from 'vuex';
 
 export default {
   name: 'LinkList',
@@ -26,11 +29,9 @@ export default {
     }
   },
   computed: {
-    filteredLinks() {
-      const searchTags = (this.search && this.search.split(' ')) || null;
-
-      return this.$store.getters.matchingLinks(searchTags);
-    },
+    ...mapGetters([
+      'matchingLinks',
+    ]),
   },
   methods: {
     removeLink(id) {
@@ -47,4 +48,8 @@ export default {
 </script>
 
 <style scoped>
+input {
+  font-family: Lato, Helvetica, Arial, sans-serif;
+  width: 40%;
+}
 </style>
