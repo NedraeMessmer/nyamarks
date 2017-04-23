@@ -1,7 +1,8 @@
 export const link = state => index => {
   const link = {...state.links.main[index]};
 
-  link.tagString = link.tags.join(' ');
+  link.id = index;
+  link.tags = link.tags.join(' ');
 
   return link;
 }

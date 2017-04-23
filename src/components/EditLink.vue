@@ -7,7 +7,10 @@
     </div>
 
     <form class="edit-link-form" name="editLink" v-on:submit.prevent="updateLink">
-      <h2>Edit link: {{link.name}}</h2>
+      <h2>
+        Edit link: {{link.name}}
+        <small class="linkId">{{id}}</small>
+      </h2>
 
       <p><input placeholder="Name" v-model.trim="link.name"></p>
       <p><input placeholder="URL (required)" v-model.trim="link.url" required></p>
@@ -36,7 +39,7 @@ export default {
       const link = {...this.link};
 
       this.$store.dispatch('updateLink', {
-        id: this.id,
+        index: this.id,
         link,
       })
       .then(() => {
@@ -52,9 +55,17 @@ export default {
   h2 {
     font-weight: normal;
   }
+
+  input, textarea {
+    width: 25vw;
+  }
 }
 
 .edit-link-form {
   text-align: center;
+}
+
+.linkId {
+  opacity: 0.5;
 }
 </style>
