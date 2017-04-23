@@ -4,7 +4,10 @@
     <header-component></header-component>
     <router-view></router-view>
 
-    <p class="env">Currently: {{env}}</p>
+    <p class="env">
+      Env: {{env}} |
+      <a href="https://github.com/NedraeMessmer/nyamarks">Source</a>
+    </p>
   </div>
 </template>
 
