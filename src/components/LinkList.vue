@@ -34,11 +34,8 @@ export default {
     ]),
   },
   methods: {
-    removeLink(id) {
-      return this.$store.dispatch({
-        type: 'removeLink',
-        id,
-      });
+    removeLink(index) {
+      return this.$store.dispatch('removeLink', {index});
     },
   },
   components: {

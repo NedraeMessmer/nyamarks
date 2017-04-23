@@ -43,17 +43,11 @@ export default {
 
       this.newTags = '';
 
-      return this.$store.commit({
-        type: 'addTags',
-        tags,
-      });
+      return this.$store.dispatch('addTags', {tags});
     },
 
     removeTag(id) {
-      return this.$store.dispatch({
-        type: 'removeTag',
-        id,
-      });
+      return this.$store.dispatch('removeTag', {id});
     },
   },
   components: {

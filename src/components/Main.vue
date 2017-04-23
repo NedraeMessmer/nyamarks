@@ -22,12 +22,14 @@
     </div>
 
     <div>
-      <h3>Current tags</h3>
+      <h3>Current tags <span class="wip">(WIP)</span></h3>
 
       <tag-list></tag-list>
     </div>
 
     <div>
+      <h3>Save/load</h3>
+
       <button v-on:click="saveToDisk">Save to disk</button>
       <button v-on:click="saveToLocalStorage">Save to localStorage</button>
 
@@ -77,10 +79,7 @@ export default {
       form.reset();
       this.newLink = {...newLink};
 
-      this.$store.dispatch({
-        type: 'addLink',
-        link,
-      });
+      this.$store.dispatch('addLink', {link});
     },
 
     saveToDisk() {
@@ -103,10 +102,7 @@ export default {
       contents.onload = event => {
         const data = JSON.parse(event.target.result);
 
-        this.$store.dispatch({
-          type: 'resetData',
-          data,
-        });
+        this.$store.dispatch('resetData', {data});
 
         return form.reset();
       };
@@ -129,10 +125,7 @@ export default {
 
       const data = JSON.parse(json);
 
-      return this.$store.dispatch({
-        type: 'resetData',
-        data,
-      });
+      return this.$store.dispatch('resetData', {data});
     },
 
     clearLocalStorage() {

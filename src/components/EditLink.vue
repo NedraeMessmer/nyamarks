@@ -38,6 +38,13 @@ export default {
     updateLink() {
       const link = {...this.link};
 
+      // Normalize tags
+      if (link.tags === '') {
+        link.tags = [];
+      } else {
+        link.tags = link.tags.split(' ');
+      }
+
       this.$store.dispatch('updateLink', {
         index: this.id,
         link,

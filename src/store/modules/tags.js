@@ -17,18 +17,20 @@ const state = {
 
 const mutations = {
   [types.ADD_TAG](state, {tag}) {
-    if (state.main.includes(tag)) {
+    const tagExists = state.main.findIndex(item => item.name === tag) >= 0;
+
+    if (tagExists) {
       return state.main;
     }
 
     const nextId = state.$tracking ? state.$tracking + 1 : 0;
 
     const newTag = {
-      name: tag,
       id: nextId,
+      name: tag,
     }
 
-    state.$tracking++;
+    state.$tracking = nextId;
 
     return state.main.push(newTag);
   },

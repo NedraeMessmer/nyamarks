@@ -5,7 +5,7 @@
     <router-view></router-view>
 
     <p class="env">
-      Env: {{env}} |
+      env: {{env}} |
       <a href="https://github.com/NedraeMessmer/nyamarks">Source</a>
     </p>
   </div>
@@ -53,7 +53,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss">
 #app {
   color: #2c3e50;
   font-family: Lato, Helvetica, Arial, sans-serif;
@@ -63,5 +63,11 @@ export default {
   font-size: smaller;
   opacity: 0.5;
   text-align: right;
+}
+
+.wip {
+  color: hsla(25, 100%, 50%, 1);
+  font-size: smaller;
+  opacity: 0.5;
 }
 </style>

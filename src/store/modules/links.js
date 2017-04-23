@@ -52,8 +52,6 @@ const mutations = {
     return state.main.splice(index, 1);
   },
   [types.UPDATE_LINK](state, {index, link}) {
-    link.tags = link.tags.split(' ');
-
     return state.main.splice(index, 1, link);
   },
   [types.RESET_LINKS](state, {links}) {

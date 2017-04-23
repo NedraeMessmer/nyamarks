@@ -7,13 +7,17 @@ export const addLink = ({commit, dispatch}, {link}) => {
   dispatch('addTags', {tags});
 }
 
-export const removeLink = ({commit}, {id}) => {
-  commit(types.REMOVE_LINK, {id});
+export const removeLink = ({commit}, {index}) => {
+  commit(types.REMOVE_LINK, {index});
 }
 
-export const updateLink = ({commit}, {index, link}) => {
+export const updateLink = ({commit, dispatch}, {index, link}) => {
   return new Promise(resolve => {
+    const tags = link.tags;
+
     commit(types.UPDATE_LINK, {index, link});
+    dispatch('addTags', {tags});
+
     resolve();
   });
 };
