@@ -3,7 +3,10 @@
     <div>
       <h2>
         <router-link to="/">nyamarks</router-link>
-        <span class="toggle-options" @click="showOptions()">options</span>
+        <span class="toggle-options" @click="showOptions()">
+          options
+          <span class="wip">(WIP)</span>
+        </span>
       </h2>
     </div>
     <div>

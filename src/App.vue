@@ -6,12 +6,14 @@
 
     <p class="env">
       env: {{env}} |
+      version: {{version}} |
       <a href="https://github.com/NedraeMessmer/nyamarks">Source</a>
     </p>
   </div>
 </template>
 
 <script>
+import {version} from '../package.json';
 import log from '@/helpers/log';
 
 import Header from '@/components/Header.vue';
@@ -27,6 +29,7 @@ export default {
     return {
       showOptions: false,
       env: process.env.NODE_ENV,
+      version,
     }
   },
   created() {
