@@ -53,6 +53,10 @@ export default {
     width: 20%;
   }
 
+  .name {
+    font-weight: bold;
+  }
+
   .tags,
   .actions {
     align-items: center;

@@ -3,16 +3,16 @@
     <options-panel></options-panel>
     <header-component></header-component>
     <router-view></router-view>
+
+    <p class="env">Currently: {{env}}</p>
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue';
-import Options from './components/OptionsPanel.vue';
+import log from '@/helpers/log';
 
-const info = process.env.NODE_ENV === 'production' ?
-  () => {} :
-  console.info; // eslint-disable-line
+import Header from '@/components/Header.vue';
+import Options from '@/components/OptionsPanel.vue';
 
 export default {
   name: 'app',
@@ -23,6 +23,7 @@ export default {
   data() {
     return {
       showOptions: false,
+      env: process.env.NODE_ENV,
     }
   },
   created() {
@@ -34,14 +35,14 @@ export default {
       const stored = localStorage.getItem('nyamarks');
 
       if (!stored) {
-        info('Initializing default links');
+        log.info('Initializing default links');
 
         return false;
       }
 
       const data = JSON.parse(stored);
 
-      info('Initializing with stored data');
+      log.info('Initializing with stored data');
 
       return this.$store.dispatch('resetData', {data});
     },
@@ -49,9 +50,15 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #app {
   color: #2c3e50;
   font-family: Lato, Helvetica, Arial, sans-serif;
+}
+
+.env {
+  font-size: smaller;
+  opacity: 0.5;
+  text-align: right;
 }
 </style>

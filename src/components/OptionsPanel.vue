@@ -37,10 +37,10 @@ export default {
 .open-enter-active,
 .open-leave-active {
   &.overlay {
-    transition: opacity 0.5s;
+    transition: opacity 0.25s;
   }
   &.options-form {
-    transition: transform 0.5s;
+    transition: transform 0.25s;
   }
 }
 

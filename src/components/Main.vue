@@ -159,5 +159,8 @@ h1, h2 {
   input, textarea {
     width: 25vw;
   }
+  input {
+    font-family: Lato, Helvetica, Arial, sans-serif;
+  }
 }
 </style>
