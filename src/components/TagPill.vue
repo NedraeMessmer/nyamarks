@@ -20,7 +20,7 @@ export default {
 .tag-pill {
   align-items: center;
   justify-content: space-between;
-  background-color: rgba(192, 0, 64, 0.8);
+  background-color: rgb(192, 0, 64);
   border-radius: 2px;
   color: white;
   display: inline-flex;

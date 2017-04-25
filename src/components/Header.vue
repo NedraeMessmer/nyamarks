@@ -1,6 +1,6 @@
 <template>
-  <div id="header">
-    <div>
+  <header>
+    <div class="title">
       <h2>
         <router-link to="/">nyamarks</router-link>
         <span class="toggle-options" @click="showOptions()">
@@ -9,10 +9,10 @@
         </span>
       </h2>
     </div>
-    <div>
+    <div class="subtitle">
       <p>Portable bookmarks</p>
     </div>
-  </div>
+  </header>
 </template>
 
 <script>
@@ -29,14 +29,32 @@ export default {
 </script>
 
 <style scoped lang="scss">
-#header {
+header {
   align-items: center;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.3);
   display: flex;
+  height: 60px;
   justify-content: space-between;
-  text-align: center;
+  left: 0;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  position: fixed;
+  top: 0;
+  width: calc(100% - 30px);
+  z-index: 3;
 
   > div {
-    width: 20%;
+    width: 30vw;
+  }
+
+  > .title {
+    text-align: left;
+  }
+
+  > .subtitle {
+    text-align: right;
   }
 
   h2 a {

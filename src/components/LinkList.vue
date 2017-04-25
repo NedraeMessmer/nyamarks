@@ -47,6 +47,7 @@ export default {
 <style scoped>
 input {
   font-family: Lato, Helvetica, Arial, sans-serif;
-  width: 40%;
+  font-size: larger;
+  width: 30vw;
 }
 </style>

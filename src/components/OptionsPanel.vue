@@ -62,6 +62,7 @@ export default {
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 5;
 }
 
 .options-form {
@@ -71,9 +72,9 @@ export default {
   height: 100%;
   left: 0;
   padding: 10px;
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 30vw;
-  z-index: 2;
+  z-index: 6;
 }
 </style>

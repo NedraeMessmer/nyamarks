@@ -2,7 +2,9 @@
   <div id="app">
     <options-panel></options-panel>
     <header-component></header-component>
-    <router-view></router-view>
+    <div class="main-view">
+      <router-view></router-view>
+    </div>
 
     <p class="env">
       env: {{env}} |
@@ -57,9 +59,19 @@ export default {
 </script>
 
 <style lang="scss">
+body {
+  margin: 0;
+}
+
 #app {
   color: #2c3e50;
   font-family: Lato, Helvetica, Arial, sans-serif;
+}
+
+.main-view {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 90px;
 }
 
 .env {
