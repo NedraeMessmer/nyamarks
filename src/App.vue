@@ -16,7 +16,6 @@
 
 <script>
 import {version} from '../package.json';
-import log from '@/helpers/log';
 
 import Header from '@/components/Header.vue';
 import Options from '@/components/OptionsPanel.vue';
@@ -34,31 +33,11 @@ export default {
       version,
     }
   },
-  created() {
-    // Load links from localStorage on startup
-    this.loadFromLocalStorage();
-  },
-  methods: {
-    loadFromLocalStorage() {
-      const stored = localStorage.getItem('nyamarks');
-
-      if (!stored) {
-        log.info('Initializing default links');
-
-        return false;
-      }
-
-      const data = JSON.parse(stored);
-
-      log.info('Initializing with stored data');
-
-      return this.$store.dispatch('resetData', {data});
-    },
-  },
 }
 </script>
 
 <style lang="scss">
+$default-text: #2c3e50;
 $input-highlight: rgb(64, 0, 192);
 
 body {
@@ -66,7 +45,7 @@ body {
 }
 
 #app {
-  color: #2c3e50;
+  color: $default-text;
   font-family: Lato, Helvetica, Arial, sans-serif;
 }
 
@@ -100,7 +79,7 @@ textarea {
   padding: 5px;
 
   &::placeholder {
-    color: mix($input-highlight, white, 50%);
+    color: mix($default-text, white, 40%);
   }
 }
 </style>

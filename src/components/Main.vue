@@ -29,20 +29,6 @@
         <tag-list></tag-list>
       </div>
     </div>
-
-    <div>
-      <h3>Save/load</h3>
-
-      <button v-on:click="saveToDisk">Save to disk</button>
-      <button v-on:click="saveToLocalStorage">Save to localStorage</button>
-
-      <form name="loadLinks" v-on:submit.prevent>
-        <input ref="loadFile" type="file" accept="application/json,.json">
-        <button v-on:click="loadFromDisk">Load links</button>
-        <button v-on:click="loadFromLocalStorage">Load from localStorage</button>
-        <button v-on:click="clearLocalStorage">Clear localStorage</button>
-      </form>
-    </div>
   </div>
 </template>
 
@@ -84,56 +70,6 @@ export default {
       this.newLink = {...newLink};
 
       this.$store.dispatch('addLink', {link});
-    },
-
-    saveToDisk() {
-      const json = this.$store.getters.storeAsJson();
-      const trigger = document.createElement('a');
-      const event = new MouseEvent('click', {bubbles: true, cancelable: true});
-
-      trigger.setAttribute('download', 'nyamarks.json');
-      trigger.setAttribute('href',
-        `data:application/json;charset=utf-8,${encodeURIComponent(json)}`);
-
-      return trigger.dispatchEvent(event);
-    },
-
-    loadFromDisk() {
-      const file = this.$refs.loadFile.files[0];
-      const contents = new FileReader();
-      const form = document.forms.loadLinks;
-
-      contents.onload = event => {
-        const data = JSON.parse(event.target.result);
-
-        this.$store.dispatch('resetData', {data});
-
-        return form.reset();
-      };
-
-      contents.readAsText(file);
-    },
-
-    saveToLocalStorage() {
-      const json = this.$store.getters.storeAsJson();
-
-      return localStorage.setItem('nyamarks', json);
-    },
-
-    loadFromLocalStorage() {
-      const json = localStorage.getItem('nyamarks');
-
-      if (!json) {
-        return false;
-      }
-
-      const data = JSON.parse(json);
-
-      return this.$store.dispatch('resetData', {data});
-    },
-
-    clearLocalStorage() {
-      return localStorage.removeItem('nyamarks');
     },
 
     debugToggleTags() {
