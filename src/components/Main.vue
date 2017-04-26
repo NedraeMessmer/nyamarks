@@ -62,7 +62,7 @@ export default {
       if (link.tags === '') {
         link.tags = [];
       } else {
-        link.tags = link.tags.split(' ');
+        link.tags = link.tags.split(' ').sort();
       }
 
       // Reset form

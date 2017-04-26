@@ -19,24 +19,25 @@ export default {
 <style scoped lang="scss">
 .tag-pill {
   align-items: center;
-  justify-content: space-between;
   background-color: rgb(192, 0, 64);
-  border-radius: 2px;
+  border-radius: 6px;
   color: white;
   display: inline-flex;
+  font-size: smaller;
+  font-weight: bold;
+  height: auto;
+  justify-content: space-between;
   margin: 2px;
-  height: 28px;
   text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
 
   > span {
     display: block;
-    margin-left: 6px;
-    margin-right: 6px;
+    margin: 4px 6px;
   }
 
   > .delete {
     background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 2px;
+    border-radius: 6px;
     border: none;
     color: inherit;
     cursor: pointer;

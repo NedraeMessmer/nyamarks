@@ -31,10 +31,14 @@ export const removeTag = ({commit}, {id}) => {
 }
 
 export const resetData = ({commit}, {data}) => {
-  const {links, tags, $tracking} = data;
+  return new Promise(resolve => {
+    const {links, tags, $tracking} = data;
 
-  commit(types.RESET_TAGS, {tags, $tracking});
-  commit(types.RESET_LINKS, {links});
+    commit(types.RESET_TAGS, {tags, $tracking});
+    commit(types.RESET_LINKS, {links});
+
+    resolve();
+  });
 }
 
 // UI actions

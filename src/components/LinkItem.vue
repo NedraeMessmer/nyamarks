@@ -110,7 +110,7 @@ export default {
   }
 
   .actions {
-    justify-content: center;
+    justify-content: flex-end;
   }
 
   .actions {
@@ -121,8 +121,8 @@ export default {
       box-shadow: inset 0 -3px rgba(0, 0, 0, 0.5);
       color: white;
       cursor: pointer;
-      font-family: 'Lato', sans-serif;
       font-size: 1em;
+      font-weight: bold;
       display: inline-block;
       margin: 2px;
       padding: 5px 8px 8px;

@@ -7,8 +7,8 @@ const state = {
       url: 'https://google.com',
       description: 'Google Search',
       tags: [
-        'search',
         'google',
+        'search',
       ],
     },
     {
@@ -16,8 +16,8 @@ const state = {
       url: 'https://youtube.com',
       description: 'Videos',
       tags: [
-        'video',
         'google',
+        'video',
         'youtube',
       ],
     },
@@ -26,9 +26,9 @@ const state = {
       url: 'https://bing.com',
       description: 'Bing Search',
       tags: [
-        'search',
         'bing',
         'microsoft',
+        'search',
       ],
     },
     {
@@ -36,9 +36,9 @@ const state = {
       url: 'https://developer.mozilla.org',
       description: 'Developers!',
       tags: [
-        'search',
         'developer',
         'mozilla',
+        'search',
       ],
     },
   ],

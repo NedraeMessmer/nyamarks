@@ -40,18 +40,19 @@ export default {
 $default-text: #2c3e50;
 $input-highlight: rgb(64, 0, 192);
 
+$font-stack: Lato, Helvetica, Arial, sans-serif;
+
 body {
   margin: 0;
 }
 
 #app {
   color: $default-text;
-  font-family: Lato, Helvetica, Arial, sans-serif;
+  font-family: $font-stack;
+  padding: 0 15px;
 }
 
 .main-view {
-  padding-left: 15px;
-  padding-right: 15px;
   margin-top: 90px;
 }
 
@@ -71,9 +72,13 @@ a {
   cursor: pointer;
 }
 
+button {
+  font-family: $font-stack;
+}
+
 input:not([type=file]),
 textarea {
-  font-family: Lato, Helvetica, Arial, sans-serif;
+  font-family: $font-stack;
   border: 0;
   border-bottom: 2px solid $input-highlight;
   padding: 5px;

@@ -5,7 +5,11 @@
     </transition>
     <transition name="open">
       <div class="options-content" v-show="showOptions">
-        <h2>Options</h2>
+        <div class="options-header">
+          <h2>Options</h2>
+
+          <button type="button" class="close-options" @click="dismiss()">X</button>
+        </div>
 
         <h3>Save/load</h3>
 
@@ -40,10 +44,6 @@
             <span class="wip">(WIP)</span>
           </label>
         </div>
-
-        <button type="button" @click="dismiss()">
-          Close
-        </button>
       </div>
     </transition>
   </div>
@@ -110,14 +110,15 @@ export default {
     loadFromFile() {
       const file = this.$refs.loadFile.files[0];
       const contents = new FileReader();
-      const form = document.forms.loadLinks;
 
       contents.onload = event => {
         const data = JSON.parse(event.target.result);
 
-        this.$store.dispatch('resetData', {data});
-
-        return form.reset();
+        return this.$store.dispatch('resetData', {data})
+          .then(() => {
+            this.$refs.loadFile.value = null;
+            this.dismiss();
+          });
       };
 
       contents.readAsText(file);
@@ -173,6 +174,12 @@ export default {
   z-index: 6;
 }
 
+.options-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
 .local-storage,
 .file-storage {
   align-content: flex-start;
@@ -194,5 +201,17 @@ export default {
 
 .file-storage > h4 {
   align-self: flex-start;
+}
+
+.close-options {
+  background-color: rgb(192, 0, 64);
+  border-radius: 6px;
+  border: 0;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  height: 24px;
+  text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
+  width: 24px;
 }
 </style>
