@@ -15,16 +15,19 @@
       <button type="submit">Add link</button>
     </form>
 
-    <div>
-      <h3>Current links</h3>
+    <link-list></link-list>
 
-      <link-list></link-list>
+    <div>
+      <a class="wip" v-on:click="debugToggleTags">
+        Toggle tags (WIP)
+      </a>
     </div>
+    <div v-show="debugTags">
+      <div>
+        <h3>Current tags <span class="wip">(WIP)</span></h3>
 
-    <div>
-      <h3>Current tags <span class="wip">(WIP)</span></h3>
-
-      <tag-list></tag-list>
+        <tag-list></tag-list>
+      </div>
     </div>
 
     <div>
@@ -61,6 +64,7 @@ export default {
       welcome: 'Welcome to nyamarks',
       newLink: {...newLink},
       fileLoad: null,
+      debugTags: false,
     }
   },
   methods: {
@@ -131,6 +135,10 @@ export default {
     clearLocalStorage() {
       return localStorage.removeItem('nyamarks');
     },
+
+    debugToggleTags() {
+      return this.debugTags = !this.debugTags;
+    },
   },
   components: {
     linkList,
@@ -151,9 +159,6 @@ h1, h2 {
 .newLink {
   input, textarea {
     width: 25vw;
-  }
-  input {
-    font-family: Lato, Helvetica, Arial, sans-serif;
   }
 }
 </style>

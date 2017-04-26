@@ -1,9 +1,11 @@
 <template>
   <div class="link-list-container">
-    <div class="link-list-filters">
-      <p>
+    <div class="link-list-header">
+      <h2>Your links</h2>
+
+      <div class="link-list-filter">
         <input v-model.trim="search" placeholder="Search title, description, tag">
-      </p>
+      </div>
     </div>
 
     <div class="link-list">
@@ -44,10 +46,31 @@ export default {
 }
 </script>
 
-<style scoped>
-input {
-  font-family: Lato, Helvetica, Arial, sans-serif;
-  font-size: larger;
-  width: 30vw;
+<style scoped lang="scss">
+.link-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 40vw;
+  margin: 0 auto;
+  text-align: left;
+
+  > * {
+    flex: 1 1 auto;
+  }
+
+  .link-list-title {
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
+
+  .link-list-filter {
+    text-align: right;
+
+    > input {
+      width: 85%;
+      font-size: larger;
+    }
+  }
 }
 </style>

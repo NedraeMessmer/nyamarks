@@ -59,6 +59,8 @@ export default {
 </script>
 
 <style lang="scss">
+$input-highlight: rgb(64, 0, 192);
+
 body {
   margin: 0;
 }
@@ -84,5 +86,21 @@ body {
   color: hsla(25, 100%, 50%, 1);
   font-size: smaller;
   opacity: 0.5;
+}
+
+a {
+  cursor: pointer;
+}
+
+input:not([type=file]),
+textarea {
+  font-family: Lato, Helvetica, Arial, sans-serif;
+  border: 0;
+  border-bottom: 2px solid $input-highlight;
+  padding: 5px;
+
+  &::placeholder {
+    color: mix($input-highlight, white, 50%);
+  }
 }
 </style>
