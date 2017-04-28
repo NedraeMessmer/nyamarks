@@ -11,10 +11,10 @@
     <div class="link-list">
       <link-item
         v-for="(link, index) in matchingLinks(this.search)"
-        v-bind:link="link"
-        v-bind:key="index"
-        v-bind:link-id="index"
-        v-on:delete-link="removeLink(index)"></link-item>
+        :link="link"
+        :key="index"
+        :link-id="index"
+        @delete-link="removeLink(index)"></link-item>
     </div>
   </div>
 </template>

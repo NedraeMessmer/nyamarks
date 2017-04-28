@@ -3,14 +3,14 @@
     <div class="tag-list">
       <tag-pill
         v-for="tag in tags"
-        v-bind:tagname="tag.name"
-        v-bind:key="tag.id"
-        v-bind:deletable="true"
-        v-on:delete-pill="removeTag(tag.id)"
+        :tagname="tag.name"
+        :key="tag.id"
+        :deletable="true"
+        @delete-pill="removeTag(tag.id)"
         ></tag-pill>
     </div>
 
-    <form v-on:submit.prevent="addTags">
+    <form @submit.prevent="addTags">
       <input v-model.trim="newTags" placeholder="Tags">
       <button type="submit">Add tags</button>
     </form>

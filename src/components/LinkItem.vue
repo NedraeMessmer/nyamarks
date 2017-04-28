@@ -1,7 +1,7 @@
 <template>
   <div class="link-item">
     <div class="link">
-      <a v-bind:href="link.url" target="_blank">
+      <a :href="link.url" target="_blank">
         <p class="name" v-if="link.name">{{link.name}}</p>
         <p class="url">{{link.url}}</p>
       </a>
@@ -12,12 +12,12 @@
     <div class="tags">
       <tag-pill
         v-for="(tag, index) in link.tags"
-        v-bind:tagname="tag"
-        v-bind:key="index"></tag-pill>
+        :tagname="tag"
+        :key="index"></tag-pill>
     </div>
     <div class="actions">
-      <router-link v-bind:to="editLink">Edit</router-link>
-      <button class="delete" v-on:click="removeLink(linkId)">Delete</button>
+      <router-link :to="editLink">Edit</router-link>
+      <button class="delete" @click="removeLink(linkId)">Delete</button>
     </div>
   </div>
 </template>

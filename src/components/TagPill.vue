@@ -1,7 +1,7 @@
 <template>
   <div class="tag-pill">
     <span>{{tagname}}</span>
-    <button class="delete" v-on:click="deletePill" v-if="deletable">X</button>
+    <button class="delete" @click="deletePill" v-if="deletable">X</button>
   </div>
 </template>
 

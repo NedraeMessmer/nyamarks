@@ -17,9 +17,9 @@
           <h4>localStorage</h4>
 
           <div class="actions">
-            <button v-on:click="saveToLocalStorage">Save</button>
-            <button v-on:click="loadFromLocalStorage">Load</button>
-            <button v-on:click="clearLocalStorage">Clear</button>
+            <button @click="saveToLocalStorage">Save</button>
+            <button @click="loadFromLocalStorage">Load</button>
+            <button @click="clearLocalStorage">Clear</button>
           </div>
         </div>
 
@@ -27,12 +27,12 @@
           <h4>File</h4>
 
           <div class="actions">
-            <button v-on:click="saveToFile">Save</button>
+            <button @click="saveToFile">Save</button>
 
             <div class="fileForm">
               <input ref="loadFile" type="file" accept="application/json,.json">
               <br>
-              <button v-on:click="loadFromFile">Load</button>
+              <button @click="loadFromFile">Load</button>
             </div>
           </div>
         </div>

@@ -1,12 +1,12 @@
 <template>
   <div id="edit-link">
     <div>
-      <router-link v-bind:to="{name: 'Main'}">
+      <router-link :to="{name: 'Main'}">
         ← Return
       </router-link>
     </div>
 
-    <form class="edit-link-form" name="editLink" v-on:submit.prevent="updateLink">
+    <form class="edit-link-form" name="editLink" @submit.prevent="updateLink">
       <h2>
         Edit link: {{link.name}}
         <small class="linkId">{{id}}</small>

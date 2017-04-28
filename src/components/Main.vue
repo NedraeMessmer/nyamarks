@@ -2,7 +2,7 @@
   <div id="main">
     <h1>{{welcome}}</h1>
 
-    <form class="newLink" name="newLink" v-on:submit.prevent="addLink">
+    <form class="newLink" name="newLink" @submit.prevent="addLink">
       <h2>Add new link</h2>
 
       <p><input placeholder="Name" v-model.trim="newLink.name"></p>
@@ -18,7 +18,7 @@
     <link-list></link-list>
 
     <div>
-      <a class="wip" v-on:click="debugToggleTags">
+      <a class="wip" @click="debugToggleTags">
         Toggle tags (WIP)
       </a>
     </div>
