@@ -14,7 +14,7 @@
         v-for="(tag, index) in link.tags"
         :tagname="tag"
         :key="index"
-        @click.native="searchTag(tag)"></tag-pill>
+        @click.native="linkQuery({query: tag})"></tag-pill>
     </div>
     <div class="actions">
       <router-link :to="editLink">Edit</router-link>
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-// import {mapActions} from 'vuex';
+import {mapActions} from 'vuex';
 
 export default {
   name: 'LinkItem',
@@ -38,9 +38,9 @@ export default {
     }
   },
   methods: {
-    searchTag(query) {
-      this.$store.dispatch('linkQuery', {query});
-    },
+    ...mapActions([
+      'linkQuery',
+    ]),
     removeLink() {
       this.$emit('delete-link');
     },
