@@ -17,9 +17,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+$tag-pill-bg: rgb(192, 0, 64);
+
 .tag-pill {
   align-items: center;
-  background-color: rgb(192, 0, 64);
+  background-color: $tag-pill-bg;
   border-radius: 6px;
   color: white;
   display: inline-flex;
@@ -29,6 +31,11 @@ export default {
   justify-content: space-between;
   margin: 2px;
   text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.25s;
+
+  &:hover {
+    background-color: mix($tag-pill-bg, white, 75%);
+  }
 
   > span {
     display: block;

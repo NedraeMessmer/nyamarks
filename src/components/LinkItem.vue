@@ -13,7 +13,8 @@
       <tag-pill
         v-for="(tag, index) in link.tags"
         :tagname="tag"
-        :key="index"></tag-pill>
+        :key="index"
+        @click.native="searchTag(tag)"></tag-pill>
     </div>
     <div class="actions">
       <router-link :to="editLink">Edit</router-link>
@@ -23,6 +24,8 @@
 </template>
 
 <script>
+// import {mapActions} from 'vuex';
+
 export default {
   name: 'LinkItem',
   props: ['link', 'linkId'],
@@ -35,6 +38,9 @@ export default {
     }
   },
   methods: {
+    searchTag(query) {
+      this.$store.dispatch('linkQuery', {query});
+    },
     removeLink() {
       this.$emit('delete-link');
     },
@@ -109,11 +115,13 @@ export default {
     flex-wrap: wrap;
   }
 
-  .actions {
-    justify-content: flex-end;
+  .tag-pill {
+    cursor: pointer;
   }
 
   .actions {
+    justify-content: flex-end;
+
     a, button {
       background-color: rgb(64, 0, 192);
       border: none;

@@ -11,3 +11,5 @@ export const RESET_TAGS = 'RESET_TAGS';
 
 export const SHOW_OPTIONS = 'SHOW_OPTIONS';
 export const HIDE_OPTIONS = 'HIDE_OPTIONS';
+
+export const LINK_QUERY = 'LINK_QUERY';

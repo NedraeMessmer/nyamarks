@@ -53,3 +53,7 @@ export const hideOptions = ({commit}) => {
 
   commit(types.HIDE_OPTIONS, {showOptions});
 }
+
+export const linkQuery = ({commit}, {query}) => {
+  commit(types.LINK_QUERY, {query});
+};

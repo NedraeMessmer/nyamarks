@@ -2,6 +2,7 @@ import * as types from '../mutation-types';
 
 const state = {
   showOptions: false,
+  linkSearch: null,
 }
 
 const mutations = {
@@ -10,6 +11,9 @@ const mutations = {
   },
   [types.HIDE_OPTIONS](state) {
     return state.showOptions = false;
+  },
+  [types.LINK_QUERY](state, {query}) {
+    return state.linkSearch = query;
   },
 }
 

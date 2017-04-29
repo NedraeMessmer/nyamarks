@@ -49,9 +49,7 @@ export const matchingLinks = state => query => {
   });
 }
 
-export const tags = state => {
-  return state.tags.main;
-}
+export const tags = state => state.tags.main;
 
 export const storeAsJson = state => () => {
   const links = state.links.main;
@@ -64,3 +62,5 @@ export const storeAsJson = state => () => {
     $tracking,
   });
 }
+
+export const linkSearch = state => state.ui.linkSearch;

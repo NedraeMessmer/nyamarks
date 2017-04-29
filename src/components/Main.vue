@@ -3,14 +3,21 @@
     <h1>{{welcome}}</h1>
 
     <form class="newLink" name="newLink" @submit.prevent="addLink">
-      <h2>Add new link</h2>
+      <h2>
+        Add new link
+        <a @click.prevent="toggleNewLink">⯆</a>
+      </h2>
 
-      <p><input placeholder="Name" v-model.trim="newLink.name"></p>
-      <p><input placeholder="URL (required)" v-model.trim="newLink.url" required></p>
-      <p><input placeholder="Tags (space-delimited)" v-model.trim="newLink.tags"></p>
-      <p>
-        <textarea placeholder="Description" v-model.trim="newLink.description"></textarea>
-      </p>
+      <transition name="slide-fade">
+        <div v-show="showNewLink">
+          <p><input placeholder="Name" v-model.trim="newLink.name"></p>
+          <p><input placeholder="URL (required)" v-model.trim="newLink.url" required></p>
+          <p><input placeholder="Tags (space-delimited)" v-model.trim="newLink.tags"></p>
+          <p>
+            <textarea placeholder="Description" v-model.trim="newLink.description"></textarea>
+          </p>
+        </div>
+      </transition>
 
       <button type="submit">Add link</button>
     </form>
@@ -51,9 +58,14 @@ export default {
       newLink: {...newLink},
       fileLoad: null,
       debugTags: false,
+      showNewLink: true,
     }
   },
   methods: {
+    toggleNewLink() {
+      return this.showNewLink = !this.showNewLink;
+    },
+
     addLink() {
       const link = {...this.newLink};
       const form = document.forms.newLink;
@@ -96,5 +108,16 @@ h1, h2 {
   input, textarea {
     width: 25vw;
   }
+}
+
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: opacity 0.25s, transform 0.25s;
+}
+
+.slide-fade-enter,
+.slide-fade-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
 }
 </style>

@@ -5,6 +5,7 @@
 
       <div class="link-list-filter">
         <input v-model.trim="search" placeholder="Search title, description, tag">
+        <button type="button" @click="clearSearch()">X</button>
       </div>
     </div>
 
@@ -33,9 +34,18 @@ export default {
   computed: {
     ...mapGetters([
       'matchingLinks',
+      'linkSearch',
     ]),
   },
+  watch: {
+    linkSearch(next) {
+      this.search = next;
+    },
+  },
   methods: {
+    clearSearch() {
+      return this.$store.dispatch('linkQuery', {query: null});
+    },
     removeLink(index) {
       return this.$store.dispatch('removeLink', {index});
     },
