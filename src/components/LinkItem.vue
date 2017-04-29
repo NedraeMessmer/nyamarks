@@ -50,8 +50,16 @@ export default {
 
 <style scoped lang="scss">
 .link-item {
+  border-bottom: 1px solid #eeeeee;
   display: flex;
+  opacity: 0.75;
   text-align: left;
+  transition: all 0.25s;
+
+  &:hover {
+    opacity: 1;
+    border-bottom: 1px solid #cccccc;
+  }
 
   > div {
     flex: 3 1 auto;
@@ -65,46 +73,50 @@ export default {
     }
   }
 
-  .link > a {
-    color: #2c3e50;
-    display: block;
-    height: 100%;
-    overflow: hidden;
-    text-decoration: none;
-    width: 100%;
+  .link {
+    align-items: center;
+    display: flex;
 
-    &:after {
-      background-image: linear-gradient(to right, transparent, white);
-      content: '';
+    > a {
+      color: #2c3e50;
       display: block;
-      height: 100%;
-      position: absolute;
-      right: 10px;
-      top: 0;
-      width: 15px;
-      z-index: 2;
-    }
-
-    p {
-      margin-top: 0;
-      margin-bottom: 0;
-    }
-
-    .name {
-      font-weight: bold;
+      overflow: hidden;
       text-decoration: none;
+      width: 100%;
 
-      + .url {
-        font-size: smaller;
+      p {
+        margin-top: 0;
+        margin-bottom: 0;
       }
-    }
 
-    .url {
-      color: rgb(0, 128, 192);
-    }
+      .name {
+        font-weight: bold;
+        text-decoration: none;
 
-    &:hover .url {
-      text-decoration: underline;
+        + .url {
+          font-size: smaller;
+        }
+      }
+
+      .url {
+        color: rgb(0, 128, 192);
+        width: 100%;
+        position: relative;
+
+        &:after {
+          background-image: linear-gradient(to left, white, transparent);
+          content: '';
+          height: 100%;
+          position: absolute;
+          right: 0;
+          top: 0;
+          width: 50px;
+        }
+      }
+
+      &:hover .url {
+        text-decoration: underline;
+      }
     }
   }
 
