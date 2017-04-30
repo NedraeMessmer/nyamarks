@@ -1,10 +1,10 @@
 const env = process.env.NODE_ENV;
 
-const log = {...console};
+const log = {};
 
-if (env !== 'development') {
-  for (const method in console) {
-    log[method] = () => {}
+for (const method in console) {
+  if (env === 'development') {
+    log[method] = console[method];
   }
 }
 
