@@ -8,7 +8,7 @@
         <a @click.prevent="toggleNewLink">⯆</a>
       </h2>
 
-      <transition name="slide-fade">
+      <transition name="zoom-from">
         <div v-show="showNewLink">
           <p><input placeholder="Name" v-model.trim="newLink.name"></p>
           <p><input placeholder="URL (required)" v-model.trim="newLink.url" required></p>
@@ -16,10 +16,10 @@
           <p>
             <textarea placeholder="Description" v-model.trim="newLink.description"></textarea>
           </p>
+
+          <button type="submit">Add link</button>
         </div>
       </transition>
-
-      <button type="submit">Add link</button>
     </form>
 
     <link-list></link-list>
@@ -58,7 +58,7 @@ export default {
       newLink: {...newLink},
       fileLoad: null,
       debugTags: false,
-      showNewLink: true,
+      showNewLink: false,
     }
   },
   methods: {
@@ -110,14 +110,15 @@ h1, h2 {
   }
 }
 
-.slide-fade-enter-active,
-.slide-fade-leave-active {
+.zoom-from-enter-active,
+.zoom-from-leave-active {
+  transform-origin: top center;
   transition: opacity 0.25s, transform 0.25s;
 }
 
-.slide-fade-enter,
-.slide-fade-leave-to {
+.zoom-from-enter,
+.zoom-from-leave-to {
   opacity: 0;
-  transform: translateY(30px);
+  transform: scale(0.25);
 }
 </style>

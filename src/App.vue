@@ -2,15 +2,12 @@
   <div id="app">
     <options-panel></options-panel>
     <header-component></header-component>
-    <div class="main-view">
+
+    <div id="main-view">
       <router-view></router-view>
     </div>
 
-    <p class="env">
-      env: {{env}} |
-      version: {{version}} |
-      <a href="https://github.com/NedraeMessmer/nyamarks">Source</a>
-    </p>
+    <footer-component></footer-component>
   </div>
 </template>
 
@@ -19,12 +16,14 @@ import {version} from '../package.json';
 
 import Header from '@/components/Header.vue';
 import Options from '@/components/OptionsPanel.vue';
+import Footer from '@/components/Footer.vue';
 
 export default {
   name: 'app',
   components: {
     'header-component': Header,
     'options-panel': Options,
+    'footer-component': Footer,
   },
   data() {
     return {
@@ -37,7 +36,7 @@ export default {
 </script>
 
 <style lang="scss">
-$default-text: #2c3e50;
+$default-text: rgb(44, 62, 80);
 $input-highlight: rgb(64, 0, 192);
 
 $font-stack: Lato, Helvetica, Arial, sans-serif;
@@ -52,18 +51,13 @@ body {
   padding: 0 15px;
 }
 
-.main-view {
+#main-view {
   margin-top: 90px;
-}
-
-.env {
-  font-size: smaller;
-  opacity: 0.5;
-  text-align: right;
+  margin-bottom: 60px;
 }
 
 .wip {
-  color: hsla(25, 100%, 50%, 1);
+  color: rgb(255, 102, 0);
   font-size: smaller;
   opacity: 0.5;
 }
