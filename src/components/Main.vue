@@ -4,8 +4,10 @@
 
     <form class="newLink" name="newLink" @submit.prevent="addLink">
       <h2>
-        Add new link
-        <a @click.prevent="toggleNewLink">⯆</a>
+        <a @click.prevent="toggleNewLink">
+          Add new link
+          <span :class="{'linkArrow': true, 'toggled': showNewLink}">⯆</span>
+        </a>
       </h2>
 
       <transition name="zoom-from">
@@ -107,6 +109,15 @@ h1, h2 {
 .newLink {
   input, textarea {
     width: 25vw;
+  }
+
+  .linkArrow {
+    display: inline-block;
+    transition: transform 0.25s;
+
+    &.toggled {
+      transform: rotateX(-180deg);
+    }
   }
 }
 

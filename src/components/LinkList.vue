@@ -1,30 +1,42 @@
 <template>
   <div class="link-list-container">
     <div class="link-list-header">
-      <h2>Your links</h2>
+      <h2>
+        Your links
+        <small>({{linkSummary}})</small>
+      </h2>
 
       <div class="link-list-filter">
-        <input class="query" v-model.trim="search" placeholder="Search title, description, tag">
+        <input
+          class="query"
+          placeholder="Search title, description, tag"
+          :value="search"
+          @keyup="runQuery">
         <button class="search" type="button" @click="clearSearch()">X</button>
       </div>
     </div>
 
     <div class="link-list">
-      <transition-group name="slide-fade">
-        <link-item
+      <transition-group name="fold" appear tag="div">
+        <div
+          class="link-item-wrap"
           v-for="(link, index) in matchingLinks(this.search)"
-          :link="link"
-          :key="index"
-          :link-id="index"
-          @delete-link="removeLink(index)"></link-item>
+          :key="index">
+          <link-item
+            :link="link"
+            :link-id="index"
+            @delete-link="removeLink({index})"></link-item>
+        </div>
       </transition-group>
     </div>
   </div>
 </template>
 
 <script>
+import {mapGetters, mapActions} from 'vuex';
+import {throttle} from 'lodash';
+
 import linkItem from '@/components/LinkItem';
-import {mapGetters} from 'vuex';
 
 export default {
   name: 'LinkList',
@@ -35,9 +47,20 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'matchingLinks',
       'linkSearch',
+      'matchingLinks',
+      'matchingLinksCount',
     ]),
+    linkSummary() {
+      const total = this.$store.state.links.main.length;
+      const matching = this.matchingLinksCount(this.search);
+
+      if (total === matching) {
+        return `${total}`;
+      }
+
+      return `${matching} / ${total}`;
+    },
   },
   watch: {
     linkSearch(next) {
@@ -45,13 +68,17 @@ export default {
     },
   },
   methods: {
+    ...mapActions([
+      'removeLink',
+    ]),
     clearSearch() {
-      this.search = null;
-      // return this.$store.dispatch('linkQuery', {query: null});
+      return this.$store.dispatch('linkQuery', {query: null});
     },
-    removeLink(index) {
-      return this.$store.dispatch('removeLink', {index});
-    },
+    runQuery: throttle(function(event) {
+      const query = event.target.value;
+
+      return this.$store.dispatch('linkQuery', {query});
+    }, 500),
   },
   components: {
     linkItem,
@@ -96,17 +123,24 @@ export default {
 }
 
 .link-list {
+  perspective: 3000px;
   width: 90vw;
 }
 
-.slide-fade-enter-active,
-.slide-fade-leave-active {
-  transition: opacity 0.25s, transform 0.25s;
+.link-item-wrap {
+  position: relative;
+  transition: all 0.25s;
+  width: 100%;
 }
 
-.slide-fade-enter,
-.slide-fade-leave-to {
+.fold-leave-active {
+  position: absolute;
+  transform-origin: top center;
+}
+
+.fold-enter,
+.fold-leave-to {
   opacity: 0;
-  transform: translateX(-30vw);
+  transform: rotate3d(1, 0, 0, -90deg);
 }
 </style>

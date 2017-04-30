@@ -54,7 +54,7 @@ export default {
   display: flex;
   opacity: 0.75;
   text-align: left;
-  transition: all 0.25s;
+  transition: opacity 0.25s, border-bottom 0.25s;
 
   &:hover {
     opacity: 1;

@@ -49,6 +49,10 @@ export const matchingLinks = state => query => {
   });
 }
 
+export const matchingLinksCount = (state, getters) => query => {
+  return getters.matchingLinks(query).length;
+}
+
 export const tags = state => state.tags.main;
 
 export const storeAsJson = state => () => {

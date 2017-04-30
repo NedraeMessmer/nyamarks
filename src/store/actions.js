@@ -55,5 +55,9 @@ export const hideOptions = ({commit}) => {
 }
 
 export const linkQuery = ({commit}, {query}) => {
-  commit(types.LINK_QUERY, {query});
+  return new Promise(resolve => {
+    commit(types.LINK_QUERY, {query});
+
+    resolve();
+  });
 };
