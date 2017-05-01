@@ -16,14 +16,12 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex';
-
 export default {
   name: 'header',
   methods: {
-    ...mapActions([
-      'showOptions',
-    ]),
+    showOptions() {
+      return this.$store.dispatch('showPanel', {name: 'options'});
+    },
   },
 }
 </script>

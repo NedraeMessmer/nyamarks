@@ -23,10 +23,21 @@
           :key="link">
           <link-item
             :link="link"
+            @edit-link="editLink(link.id)"
             @delete-link="removeLink({id: link.id})"></link-item>
         </div>
       </transition-group>
     </div>
+
+    <side-panel
+      class="edit-link-panel"
+      name="editLink"
+      side="right">
+      <edit-link
+        v-if="linkToEdit != null"
+        :id="linkToEdit"
+        @update-link="doneEditLink"></edit-link>
+    </side-panel>
   </div>
 </template>
 
@@ -34,13 +45,21 @@
 import {mapGetters, mapActions} from 'vuex';
 import {throttle} from 'lodash';
 
-import linkItem from '@/components/LinkItem';
+import SidePanel from '@/components/SidePanel';
+import EditLink from '@/components/EditLink';
+import LinkItem from '@/components/LinkItem';
 
 export default {
   name: 'LinkList',
+  components: {
+    SidePanel,
+    EditLink,
+    LinkItem,
+  },
   data() {
     return {
       search: null,
+      linkToEdit: null,
     }
   },
   computed: {
@@ -75,9 +94,16 @@ export default {
     clearSearch() {
       return this.linkSearch = '';
     },
-  },
-  components: {
-    linkItem,
+    editLink(id) {
+      this.linkToEdit = id;
+
+      return this.$store.dispatch('showPanel', {name: 'editLink'});
+    },
+    doneEditLink() {
+      this.linkToEdit = null;
+
+      return this.$store.dispatch('hidePanel', {name: 'editLink'});
+    },
   },
 }
 </script>
@@ -129,6 +155,11 @@ export default {
   width: 100%;
 }
 
+.edit-link-panel {
+  width: 40vw;
+}
+
+// Transitions
 .fold-leave-active {
   position: absolute;
   transform-origin: top center;

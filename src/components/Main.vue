@@ -42,8 +42,8 @@
 </template>
 
 <script>
-import linkList from '@/components/LinkList';
-import tagList from '@/components/TagList';
+import LinkList from '@/components/LinkList';
+import TagList from '@/components/TagList';
 
 const newLink = {
   name: '',
@@ -54,6 +54,10 @@ const newLink = {
 
 export default {
   name: 'Main',
+  components: {
+    LinkList,
+    TagList,
+  },
   data() {
     return {
       welcome: 'Welcome to nyamarks',
@@ -90,10 +94,6 @@ export default {
       return this.debugTags = !this.debugTags;
     },
   },
-  components: {
-    linkList,
-    tagList,
-  },
 }
 </script>
 
@@ -121,6 +121,7 @@ h1, h2 {
   }
 }
 
+// Transitions
 .fold-enter-active,
 .fold-leave-active {
   transform-origin: top center;

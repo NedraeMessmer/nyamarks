@@ -42,16 +42,28 @@ export const resetData = ({commit}, {data}) => {
 }
 
 // UI actions
-export const showOptions = ({commit}) => {
-  const showOptions = true;
+// export const showOptions = ({commit}) => {
+//   commit(types.SHOW_OPTIONS);
+// }
 
-  commit(types.SHOW_OPTIONS, {showOptions});
+// export const hideOptions = ({commit}) => {
+//   commit(types.HIDE_OPTIONS);
+// }
+
+// export const showEditLink = ({commit}) => {
+//   commit(types.SHOW_EDIT_LINK);
+// }
+
+// export const hideEditLink = ({commit}) => {
+//   commit(types.HIDE_EDIT_LINK);
+// }
+
+export const showPanel = ({commit}, {name}) => {
+  commit(types.SHOW_PANEL, {name});
 }
 
-export const hideOptions = ({commit}) => {
-  const showOptions = false;
-
-  commit(types.HIDE_OPTIONS, {showOptions});
+export const hidePanel = ({commit}, {name}) => {
+  commit(types.HIDE_PANEL, {name});
 }
 
 export const linkQuery = ({commit}, {query}) => {

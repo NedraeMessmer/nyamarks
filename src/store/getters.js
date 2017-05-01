@@ -60,4 +60,8 @@ export const storeAsJson = state => () => {
   });
 }
 
+export const panels = state => state.ui.panels;
+
+export const showPanel = state => name => state.ui.panels[name];
+
 export const linkSearch = state => state.ui.linkSearch;

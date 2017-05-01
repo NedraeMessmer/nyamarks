@@ -1,6 +1,11 @@
 <template>
   <div id="app">
-    <options-panel></options-panel>
+    <side-panel
+      class="options-panel"
+      name="options"
+      side="left">
+      <options-component></options-component>
+    </side-panel>
     <header-component></header-component>
 
     <div id="main-view">
@@ -16,16 +21,18 @@
 <script>
 import {version} from '../package.json';
 
-import Header from '@/components/Header.vue';
-import Options from '@/components/OptionsPanel.vue';
-import Footer from '@/components/Footer.vue';
+import HeaderComponent from '@/components/Header.vue';
+import FooterComponent from '@/components/Footer.vue';
+import SidePanel from '@/components/SidePanel.vue';
+import OptionsComponent from '@/components/Options.vue';
 
 export default {
   name: 'app',
   components: {
-    'header-component': Header,
-    'options-panel': Options,
-    'footer-component': Footer,
+    HeaderComponent,
+    FooterComponent,
+    SidePanel,
+    OptionsComponent,
   },
   data() {
     return {
@@ -103,5 +110,9 @@ textarea {
 
 .slide-leave-to {
   transform: translateX(-500px);
+}
+
+.options-panel {
+  width: 30vw;
 }
 </style>

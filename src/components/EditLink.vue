@@ -1,11 +1,5 @@
 <template>
   <div id="edit-link">
-    <div>
-      <router-link :to="{name: 'Main'}">
-        ← Return
-      </router-link>
-    </div>
-
     <form class="edit-link-form" name="editLink" @submit.prevent="updateLink">
       <h4>Edit link {{id}}:</h4>
       <h2>{{name}}</h2>
@@ -57,7 +51,7 @@ export default {
 
       this.$store.dispatch('updateLink', {id, link})
       .then(() => {
-        this.$router.push({name: 'Main'});
+        this.$emit('update-link', link);
       });
     },
   },

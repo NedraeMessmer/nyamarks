@@ -3,7 +3,6 @@
     <div class="link">
       <a :href="link.url" target="_blank">
         <p class="name" v-if="link.name">
-          <small>{{link.id}}</small>
           {{link.name}}
         </p>
         <p class="url">{{link.url}}</p>
@@ -20,7 +19,8 @@
         @click.native="linkQuery({query: tag})"></tag-pill>
     </div>
     <div class="actions">
-      <router-link :to="editLink">Edit</router-link>
+      <!--router-link :to="editLinkRoute">Edit</router-link-->
+      <button class="edit" @click="editLink">Edit</button>
       <button class="delete" @click="removeLink">Delete</button>
     </div>
   </div>
@@ -32,18 +32,13 @@ import {mapActions} from 'vuex';
 export default {
   name: 'LinkItem',
   props: ['link'],
-  data() {
-    return {
-      editLink: {
-        name: 'EditLink',
-        params: {id: this.link.id},
-      },
-    }
-  },
   methods: {
     ...mapActions([
       'linkQuery',
     ]),
+    editLink() {
+      this.$emit('edit-link');
+    },
     removeLink() {
       this.$emit('delete-link');
     },
