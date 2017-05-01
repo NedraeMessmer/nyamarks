@@ -2,7 +2,7 @@
   <div id="main">
     <h1>{{welcome}}</h1>
 
-    <form class="newLink" name="newLink" @submit.prevent="addLink">
+    <form class="new-link" name="newLink" @submit.prevent="addLink">
       <h2>
         <a @click.prevent="toggleNewLink">
           Add new link
@@ -10,8 +10,8 @@
         </a>
       </h2>
 
-      <transition name="zoom-from">
-        <div v-show="showNewLink">
+      <transition name="fold">
+        <div class="new-link-form" v-show="showNewLink">
           <p><input placeholder="Name" v-model.trim="newLink.name"></p>
           <p><input placeholder="URL (required)" v-model.trim="newLink.url" required></p>
           <p><input placeholder="Tags (space-delimited)" v-model.trim="newLink.tags"></p>
@@ -106,7 +106,7 @@ h1, h2 {
   font-weight: normal;
 }
 
-.newLink {
+.new-link {
   input, textarea {
     width: 25vw;
   }
@@ -121,15 +121,15 @@ h1, h2 {
   }
 }
 
-.zoom-from-enter-active,
-.zoom-from-leave-active {
+.fold-enter-active,
+.fold-leave-active {
   transform-origin: top center;
   transition: opacity 0.25s, transform 0.25s;
 }
 
-.zoom-from-enter,
-.zoom-from-leave-to {
+.fold-enter,
+.fold-leave-to {
   opacity: 0;
-  transform: scale(0.25);
+  transform: scaleY(0);
 }
 </style>
