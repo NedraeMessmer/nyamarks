@@ -1,7 +1,6 @@
-export const link = state => index => {
-  const link = {...state.links.main[index]};
+export const link = state => id => {
+  const link = state.links.main.find(link => link.id === id);
 
-  link.id = index;
   link.tags = link.tags.join(' ');
 
   return link;
@@ -56,14 +55,12 @@ export const matchingLinksCount = (state, getters) => query => {
 export const tags = state => state.tags.main;
 
 export const storeAsJson = state => () => {
-  const links = state.links.main;
-  const tags = state.tags.main;
-  const $tracking = state.tags.$tracking;
+  const links = state.links;
+  const tags = state.tags;
 
   return JSON.stringify({
     links,
     tags,
-    $tracking,
   });
 }
 

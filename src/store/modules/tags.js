@@ -1,19 +1,24 @@
 import * as types from '../mutation-types';
 
+// Initial state
 const state = {
   main: [
-    {id: 0, name: 'search'},
-    {id: 1, name: 'google'},
-    {id: 2, name: 'video'},
-    {id: 3, name: 'youtube'},
-    {id: 4, name: 'bing'},
-    {id: 5, name: 'microsoft'},
-    {id: 6, name: 'developer'},
-    {id: 7, name: 'mozilla'},
+    {name: 'search'},
+    {name: 'google'},
+    {name: 'video'},
+    {name: 'youtube'},
+    {name: 'bing'},
+    {name: 'microsoft'},
+    {name: 'developer'},
+    {name: 'mozilla'},
   ],
-
-  $tracking: 7,
 }
+
+// Indexing
+state.main = state.main.map(indexTag);
+
+// Tracking tags
+state.$tracking = state.main.length;
 
 const mutations = {
   [types.ADD_TAG](state, {tag}) {
@@ -39,12 +44,25 @@ const mutations = {
 
     return state.main.splice(index, 1);
   },
-  [types.RESET_TAGS](state, {tags, $tracking = null}) {
-    state.$tracking = $tracking;
-    state.main = [...tags];
+  [types.RESET_TAGS](state, {tags}) {
+    let indexedTags;
 
-    return state.main;
+    if (tags.$tracking) {
+      state.$tracking = tags.$tracking;
+      indexedTags = tags.main;
+    } else {
+      state.$tracking = tags.length;
+      indexedTags = tags.map(indexTag);
+    }
+
+    return state.main = [...indexedTags];
   },
+}
+
+function indexTag(tag, index) {
+  tag.id = index;
+
+  return tag;
 }
 
 export default {

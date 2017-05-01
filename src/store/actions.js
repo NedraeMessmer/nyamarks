@@ -7,15 +7,15 @@ export const addLink = ({commit, dispatch}, {link}) => {
   dispatch('addTags', {tags});
 }
 
-export const removeLink = ({commit}, {index}) => {
-  commit(types.REMOVE_LINK, {index});
+export const removeLink = ({commit}, {id}) => {
+  commit(types.REMOVE_LINK, {id});
 }
 
-export const updateLink = ({commit, dispatch}, {index, link}) => {
+export const updateLink = ({commit, dispatch}, {id, link}) => {
   return new Promise(resolve => {
     const tags = link.tags;
 
-    commit(types.UPDATE_LINK, {index, link});
+    commit(types.UPDATE_LINK, {id, link});
     dispatch('addTags', {tags});
 
     resolve();
@@ -31,10 +31,13 @@ export const removeTag = ({commit}, {id}) => {
 }
 
 export const resetData = ({commit}, {data}) => {
-  return new Promise(resolve => {
-    const {links, tags, $tracking} = data;
+  console.info('Reset data');
+  console.info(data);
 
-    commit(types.RESET_TAGS, {tags, $tracking});
+  return new Promise(resolve => {
+    const {links, tags} = data;
+
+    commit(types.RESET_TAGS, {tags});
     commit(types.RESET_LINKS, {links});
 
     resolve();

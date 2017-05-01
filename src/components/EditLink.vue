@@ -9,7 +9,7 @@
     <form class="edit-link-form" name="editLink" @submit.prevent="updateLink">
       <h2>
         Edit link: {{link.name}}
-        <small class="linkId">{{id}}</small>
+        <small class="linkId">{{link.id}}</small>
       </h2>
 
       <p><input placeholder="Name" v-model.trim="link.name"></p>
@@ -31,12 +31,13 @@ export default {
   props: ['id'],
   computed: {
     link() {
-      return this.$store.getters.link(this.id);
+      return {...this.$store.getters.link(this.id)};
     },
   },
   methods: {
     updateLink() {
       const link = {...this.link};
+      const id = this.id;
 
       // Normalize tags
       if (link.tags === '') {
@@ -45,10 +46,7 @@ export default {
         link.tags = link.tags.split(' ').sort();
       }
 
-      this.$store.dispatch('updateLink', {
-        index: this.id,
-        link,
-      })
+      this.$store.dispatch('updateLink', {id, link})
       .then(() => {
         this.$router.push({name: 'Main'});
       });

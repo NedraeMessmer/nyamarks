@@ -20,12 +20,11 @@
       <transition-group name="fold" appear tag="div">
         <div
           class="link-item-wrap"
-          v-for="(link, index) in matchingLinks(this.search)"
-          :key="index">
+          v-for="link in matchingLinks(this.search)"
+          :key="link">
           <link-item
             :link="link"
-            :link-id="index"
-            @delete-link="removeLink({index})"></link-item>
+            @delete-link="removeLink({id: link.id})"></link-item>
         </div>
       </transition-group>
     </div>

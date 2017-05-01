@@ -2,7 +2,10 @@
   <div class="link-item">
     <div class="link">
       <a :href="link.url" target="_blank">
-        <p class="name" v-if="link.name">{{link.name}}</p>
+        <p class="name" v-if="link.name">
+          <small>{{link.id}}</small>
+          {{link.name}}
+        </p>
         <p class="url">{{link.url}}</p>
       </a>
     </div>
@@ -18,7 +21,7 @@
     </div>
     <div class="actions">
       <router-link :to="editLink">Edit</router-link>
-      <button class="delete" @click="removeLink(linkId)">Delete</button>
+      <button class="delete" @click="removeLink">Delete</button>
     </div>
   </div>
 </template>
@@ -28,12 +31,12 @@ import {mapActions} from 'vuex';
 
 export default {
   name: 'LinkItem',
-  props: ['link', 'linkId'],
+  props: ['link'],
   data() {
     return {
       editLink: {
         name: 'EditLink',
-        params: {id: this.linkId},
+        params: {id: this.link.id},
       },
     }
   },
