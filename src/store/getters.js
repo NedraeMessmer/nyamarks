@@ -1,9 +1,5 @@
 export const link = state => id => {
-  const link = state.links.main.find(link => link.id === id);
-
-  link.tags = link.tags.join(' ');
-
-  return link;
+  return state.links.main.find(link => link.id === id);
 }
 
 export const taggedLinks = state => tags => {

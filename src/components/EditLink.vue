@@ -7,9 +7,10 @@
     </div>
 
     <form class="edit-link-form" name="editLink" @submit.prevent="updateLink">
+      <h4>Edit link:</h4>
       <h2>
-        Edit link: {{link.name}}
-        <small class="linkId">{{link.id}}</small>
+        <strong>{{link.name}}</strong>
+        <small class="linkId">{{id}}</small>
       </h2>
 
       <p><input placeholder="Name" v-model.trim="link.name"></p>
@@ -31,7 +32,16 @@ export default {
   props: ['id'],
   computed: {
     link() {
-      return {...this.$store.getters.link(this.id)};
+      const link = this.$store.getters.link(this.id);
+      const {id, name, url, tags, description} = link;
+
+      return {
+        id,
+        name,
+        url,
+        tags: tags.join(' '),
+        description,
+      };
     },
   },
   methods: {
@@ -43,7 +53,7 @@ export default {
       if (link.tags === '') {
         link.tags = [];
       } else {
-        link.tags = link.tags.split(' ').sort();
+        link.tags = link.tags.replace(/\s+/, ' ').split(' ').sort();
       }
 
       this.$store.dispatch('updateLink', {id, link})

@@ -31,9 +31,6 @@ export const removeTag = ({commit}, {id}) => {
 }
 
 export const resetData = ({commit}, {data}) => {
-  console.info('Reset data');
-  console.info(data);
-
   return new Promise(resolve => {
     const {links, tags} = data;
 

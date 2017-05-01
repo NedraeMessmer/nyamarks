@@ -24,7 +24,7 @@ const mutations = {
   [types.ADD_TAG](state, {tag}) {
     const tagExists = state.main.findIndex(item => item.name === tag) >= 0;
 
-    if (tagExists) {
+    if (tagExists || tag === '') {
       return state.main;
     }
 
