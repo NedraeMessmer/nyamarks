@@ -6,7 +6,9 @@
       <h2>
         <a @click.prevent="toggleNewLink">
           Add new link
-          <span :class="{'linkArrow': true, 'toggled': showNewLink}">⯆</span>
+          <span
+            class="fa fa-fw fa-chevron-down fa-animated"
+            :class="{'fa-flip-vertical': showNewLink}"></span>
         </a>
       </h2>
 

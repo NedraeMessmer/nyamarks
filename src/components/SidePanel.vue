@@ -8,13 +8,14 @@
     </transition>
     <transition :name="slideSide">
       <div
+        class="panel-content"
         :class="panelClass"
         v-show="showPanel">
         <button
           type="button"
           class="close-panel"
           @click="dismiss()">
-          X
+          <span class="fa fa-fw fa-times"></span>
         </button>
         <slot></slot>
       </div>
@@ -33,7 +34,6 @@ export default {
     return {
       slideSide: this.side,
       panelClass: {
-        'panel-content': true,
         left: this.side === 'left',
         right: this.side === 'right',
       },
@@ -131,6 +131,6 @@ export default {
   right: 10px;
   text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
   top: 10px;
-  width: 24px;
+  width: auto;
 }
 </style>

@@ -9,7 +9,10 @@ function resolve (dir) {
 
 module.exports = {
   entry: {
-    app: './src/main.js'
+    app: [
+      'font-awesome/scss/font-awesome.scss',
+      './src/main.js'
+    ]
   },
   output: {
     path: config.build.assetsRoot,

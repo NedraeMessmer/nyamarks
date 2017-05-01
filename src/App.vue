@@ -9,9 +9,7 @@
     <header-component></header-component>
 
     <div id="main-view">
-      <transition name="slide">
-        <router-view></router-view>
-      </transition>
+      <router-view></router-view>
     </div>
 
     <footer-component></footer-component>
@@ -67,12 +65,14 @@ body {
   margin-bottom: 60px;
 }
 
+// Debug classes
 .wip {
   color: rgb(255, 102, 0);
   font-size: smaller;
   opacity: 0.5;
 }
 
+// Basic elements
 a {
   cursor: pointer;
 }
@@ -93,25 +93,12 @@ textarea {
   }
 }
 
-.slide-enter-active,
-.slide-leave-active {
-  transition: opacity 0.25s, transform 0.25s;
+// Icon overrides
+.fa-animated {
+  transition: all 0.25s;
 }
 
-.slide-enter,
-.slide-leave-to {
-  opacity: 0;
-  position: absolute;
-}
-
-.slide-enter {
-  transform: translateX(500px);
-}
-
-.slide-leave-to {
-  transform: translateX(-500px);
-}
-
+// Other components
 .options-panel {
   width: 30vw;
 }

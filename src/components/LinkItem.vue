@@ -20,8 +20,12 @@
     </div>
     <div class="actions">
       <!--router-link :to="editLinkRoute">Edit</router-link-->
-      <button class="edit" @click="editLink">Edit</button>
-      <button class="delete" @click="removeLink">Delete</button>
+      <button class="edit" title="Edit link" @click="editLink">
+        <span class="fa fa-fw fa-pencil"></span>
+      </button>
+      <button class="delete" title="Delete link" @click="removeLink">
+        <span class="fa fa-fw fa-trash"></span>
+      </button>
     </div>
   </div>
 </template>

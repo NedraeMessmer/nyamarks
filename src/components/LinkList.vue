@@ -11,7 +11,12 @@
           class="query"
           placeholder="Search title, description, tag"
           v-model="linkSearch">
-        <button class="search" type="button" @click="clearSearch()">X</button>
+        <button
+          class="clear-search"
+          type="button"
+          @click="clearSearch()">
+          <span class="fa fa-fw fa-times"></span>
+        </button>
       </div>
     </div>
 
@@ -131,7 +136,7 @@ export default {
     width: 85%;
   }
 
-  > .search {
+  > .clear-search {
     background-color: rgb(192, 0, 64);
     border-radius: 6px;
     border: 0;
@@ -140,7 +145,7 @@ export default {
     font-weight: bold;
     height: 24px;
     text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
-    width: 24px;
+    width: auto;
   }
 }
 
