@@ -4,7 +4,9 @@
     <header-component></header-component>
 
     <div id="main-view">
-      <router-view></router-view>
+      <transition name="slide">
+        <router-view></router-view>
+      </transition>
     </div>
 
     <footer-component></footer-component>
@@ -43,6 +45,7 @@ $font-stack: Lato, Helvetica, Arial, sans-serif;
 
 body {
   margin: 0;
+  overflow-x: hidden;
   overflow-y: scroll;
 }
 
@@ -81,5 +84,24 @@ textarea {
   &::placeholder {
     color: mix($default-text, white, 40%);
   }
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: opacity 0.25s, transform 0.25s;
+}
+
+.slide-enter,
+.slide-leave-to {
+  opacity: 0;
+  position: absolute;
+}
+
+.slide-enter {
+  transform: translateX(500px);
+}
+
+.slide-leave-to {
+  transform: translateX(-500px);
 }
 </style>

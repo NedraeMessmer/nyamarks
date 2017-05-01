@@ -84,7 +84,10 @@ const mutations = {
   [types.UPDATE_LINK](state, {id, link}) {
     const index = state.main.findIndex(link => link.id === id);
 
-    return state.main.splice(index, 1, link);
+    return state.main.splice(index, 1, {
+      ...link,
+      id,
+    });
   },
   [types.RESET_LINKS](state, {links}) {
     let indexedLinks;
