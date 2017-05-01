@@ -10,8 +10,7 @@
         <input
           class="query"
           placeholder="Search title, description, tag"
-          :value="search"
-          @keyup="runQuery">
+          v-model="linkSearch">
         <button class="search" type="button" @click="clearSearch()">X</button>
       </div>
     </div>
@@ -20,7 +19,7 @@
       <transition-group name="fold" appear tag="div">
         <div
           class="link-item-wrap"
-          v-for="link in matchingLinks(this.search)"
+          v-for="link in matchingLinks(this.linkSearch)"
           :key="link">
           <link-item
             :link="link"
@@ -46,10 +45,18 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'linkSearch',
       'matchingLinks',
       'matchingLinksCount',
     ]),
+    linkSearch: {
+      get() {
+        return this.$store.getters.linkSearch;
+      },
+
+      set: throttle(function(query) {
+        this.$store.dispatch('linkQuery', {query});
+      }, 500),
+    },
     linkSummary() {
       const total = this.$store.state.links.main.length;
       const matching = this.matchingLinksCount(this.search);
@@ -61,23 +68,13 @@ export default {
       return `${matching} / ${total}`;
     },
   },
-  watch: {
-    linkSearch(next) {
-      this.search = next;
-    },
-  },
   methods: {
     ...mapActions([
       'removeLink',
     ]),
     clearSearch() {
-      return this.$store.dispatch('linkQuery', {query: null});
+      return this.linkSearch = '';
     },
-    runQuery: throttle(function(event) {
-      const query = event.target.value;
-
-      return this.$store.dispatch('linkQuery', {query});
-    }, 500),
   },
   components: {
     linkItem,
