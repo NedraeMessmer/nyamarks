@@ -98,7 +98,6 @@ export default {
         return this.$store.dispatch('resetData', {data})
           .then(() => {
             this.$refs.loadFile.value = null;
-            this.dismiss();
           });
       };
 
