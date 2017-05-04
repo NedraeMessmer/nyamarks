@@ -42,22 +42,6 @@ export const resetData = ({commit}, {data}) => {
 }
 
 // UI actions
-// export const showOptions = ({commit}) => {
-//   commit(types.SHOW_OPTIONS);
-// }
-
-// export const hideOptions = ({commit}) => {
-//   commit(types.HIDE_OPTIONS);
-// }
-
-// export const showEditLink = ({commit}) => {
-//   commit(types.SHOW_EDIT_LINK);
-// }
-
-// export const hideEditLink = ({commit}) => {
-//   commit(types.HIDE_EDIT_LINK);
-// }
-
 export const showPanel = ({commit}, {name}) => {
   commit(types.SHOW_PANEL, {name});
 }
