@@ -37,7 +37,7 @@
     <side-panel
       class="edit-link-panel"
       name="editLink"
-      side="right">
+      position="right">
       <edit-link
         v-if="linkToEdit != null"
         :id="linkToEdit"

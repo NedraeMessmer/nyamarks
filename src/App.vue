@@ -3,7 +3,7 @@
     <side-panel
       class="options-panel"
       name="options"
-      side="left">
+      position="left">
       <options-component></options-component>
     </side-panel>
     <header-component></header-component>

@@ -28,14 +28,14 @@ export default {
   name: 'side-panel',
   props: {
     name: {type: String, required: true},
-    side: {type: String, required: true},
+    position: {type: String, required: true},
   },
   data() {
     return {
-      slideSide: this.side,
+      slideSide: this.position,
       panelClass: {
-        left: this.side === 'left',
-        right: this.side === 'right',
+        left: this.position === 'left',
+        right: this.position === 'right',
       },
     }
   },
@@ -43,15 +43,12 @@ export default {
     showPanel() {
       return this.$store.state.ui.panels[this.name];
     },
-    panels() {
-      return this.$store.getters.panels;
-    },
   },
   methods: {
     dismiss() {
       const name = this.name;
 
-      this.$emit('close-panel', this.name);
+      this.$emit('close-panel', name);
 
       return this.$store.dispatch('hidePanel', {name});
     },

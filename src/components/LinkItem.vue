@@ -19,7 +19,6 @@
         @click.native="linkQuery({query: tag})"></tag-pill>
     </div>
     <div class="actions">
-      <!--router-link :to="editLinkRoute">Edit</router-link-->
       <button class="edit" title="Edit link" @click="editLink">
         <span class="fa fa-fw fa-pencil"></span>
       </button>
