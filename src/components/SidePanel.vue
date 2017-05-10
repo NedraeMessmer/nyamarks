@@ -103,8 +103,9 @@ export default {
   height: 100%;
   padding: 10px;
   position: fixed;
+  text-align: left;
   top: 0;
-  width: inherit;
+  width: auto;
   z-index: 6;
 
   &.left {

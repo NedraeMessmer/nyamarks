@@ -2,8 +2,6 @@
   <div id="main">
     <h1>{{welcome}}</h1>
 
-    <new-link toggle></new-link>
-
     <link-list></link-list>
 
     <div>
@@ -22,14 +20,12 @@
 </template>
 
 <script>
-import NewLink from '@/components/NewLink';
 import LinkList from '@/components/LinkList';
 import TagList from '@/components/TagList';
 
 export default {
   name: 'Main',
   components: {
-    NewLink,
     LinkList,
     TagList,
   },

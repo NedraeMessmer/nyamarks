@@ -3,14 +3,19 @@
     <div class="title">
       <h2>
         <router-link to="/">nyamarks</router-link>
-        <span class="toggle-options" @click="showOptions()">
+        <a class="toggle-options" @click="showOptions">
           options
           <span class="wip">(WIP)</span>
-        </span>
+        </a>
       </h2>
     </div>
     <div class="subtitle">
-      <p>Portable bookmarks</p>
+      <p>
+        <a @click="showNewLink">
+          <span class="fa fa-fw fa-plus"></span>
+          Add new link
+        </a>
+      </p>
     </div>
   </header>
 </template>
@@ -21,6 +26,9 @@ export default {
   methods: {
     showOptions() {
       return this.$store.dispatch('showPanel', {name: 'options'});
+    },
+    showNewLink() {
+      return this.$store.dispatch('showPanel', {name: 'newLink'});
     },
   },
 }

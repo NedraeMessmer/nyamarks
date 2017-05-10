@@ -1,20 +1,19 @@
 <template>
-  <div id="edit-link">
-    <form class="edit-link-form" name="editLink" @submit.prevent="updateLink">
-      <h4>Edit link {{id}}:</h4>
-      <h2>{{name}}</h2>
+  <form class="edit-link" name="editLink" @submit.prevent="updateLink">
+    <h2 class="link-name">
+      <span>Editing link {{id}}:</span><br>
+      {{name}}
+    </h2>
 
-      <p><input placeholder="Name" v-model.trim="link.name"></p>
-      <p><input placeholder="URL (required)" v-model.trim="link.url" required></p>
-      <p><input placeholder="Tags (space-delimited)" v-model.trim="link.tags"></p>
-      <p>
-        <textarea placeholder="Description" v-model.trim="link.description"></textarea>
-      </p>
+    <p><input placeholder="Name" v-model.trim="link.name"></p>
+    <p><input placeholder="URL (required)" v-model.trim="link.url" required></p>
+    <p><input placeholder="Tags (space-delimited)" v-model.trim="link.tags"></p>
+    <p>
+      <textarea placeholder="Description" v-model.trim="link.description"></textarea>
+    </p>
 
-      <button type="submit">Update link</button>
-    </form>
-
-  </div>
+    <button type="submit">Save</button>
+  </form>
 </template>
 
 <script>
@@ -59,21 +58,35 @@ export default {
 </script>
 
 <style scoped lang="scss">
-#edit-link {
-  h2 {
+.edit-link {
+  h2 span {
+    font-size: 0.6em;
     font-weight: normal;
+    opacity: 0.7;
   }
 
   input, textarea {
     width: 25vw;
   }
-}
 
-.edit-link-form {
-  text-align: center;
-}
+  button {
+    background-color: rgb(64, 0, 192);
+    border: none;
+    border-radius: 2px;
+    box-shadow: inset 0 -3px rgba(0, 0, 0, 0.5);
+    color: white;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    margin: 2px;
+    padding: 5px 8px 8px;
+    text-decoration: none;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.2s ease-in;
 
-.linkId {
-  opacity: 0.5;
+    &:hover {
+      background-color: mix(rgb(64, 0, 192), white, 50%);
+    }
+  }
 }
 </style>

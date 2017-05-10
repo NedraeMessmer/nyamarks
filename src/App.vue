@@ -4,8 +4,16 @@
       class="options-panel"
       name="options"
       position="left">
-      <options-component></options-component>
+      <options-form></options-form>
     </side-panel>
+
+    <side-panel
+      class="new-link-panel"
+      name="newLink"
+      position="right">
+      <new-link></new-link>
+    </side-panel>
+
     <header-component></header-component>
 
     <div id="main-view">
@@ -22,7 +30,8 @@ import {version} from '../package.json';
 import HeaderComponent from '@/components/Header.vue';
 import FooterComponent from '@/components/Footer.vue';
 import SidePanel from '@/components/SidePanel.vue';
-import OptionsComponent from '@/components/Options.vue';
+import NewLink from '@/components/NewLink';
+import OptionsForm from '@/components/Options.vue';
 
 export default {
   name: 'app',
@@ -30,7 +39,8 @@ export default {
     HeaderComponent,
     FooterComponent,
     SidePanel,
-    OptionsComponent,
+    NewLink,
+    OptionsForm,
   },
   data() {
     return {
@@ -100,6 +110,6 @@ textarea {
 
 // Other components
 .options-panel {
-  width: 30vw;
+  // width: 30vw;
 }
 </style>
