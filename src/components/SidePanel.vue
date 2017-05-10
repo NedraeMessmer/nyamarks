@@ -29,6 +29,7 @@ export default {
   props: {
     name: {type: String, required: true},
     position: {type: String, required: true},
+    closeWithEsc: {type: Boolean, default: true},
   },
   data() {
     return {
@@ -51,6 +52,21 @@ export default {
       this.$emit('close-panel', name);
 
       return this.$store.dispatch('hidePanel', {name});
+    },
+    handleEscKey(event) {
+      if (event.keyCode === 27) {
+        this.dismiss();
+      }
+    },
+  },
+  watch: {
+    showPanel(next) {
+      // Dismiss panel when the escape key is released
+      if (next) {
+        return document.addEventListener('keyup', this.handleEscKey);
+      }
+
+      return document.removeEventListener('keyup', this.handleEscKey);
     },
   },
 }
