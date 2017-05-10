@@ -7,32 +7,47 @@
     <h3>Save/load</h3>
 
     <div class="local-storage">
-      <h4>localStorage</h4>
+      <h4>
+        <span>localStorage</span>
+
+        <label>
+          <input type="checkbox" v-model="autosave">
+          Auto-save
+        </label>
+      </h4>
 
       <div class="actions">
-        <button @click="saveToLocalStorage">Save</button>
-        <button @click="loadFromLocalStorage">Load</button>
-        <button @click="clearLocalStorage">Clear</button>
+        <button @click="saveToLocalStorage" v-show="!autosave">
+          <span class="fa fa-fw fa-download"></span>
+          Save
+        </button>
+        <button @click="loadFromLocalStorage" v-show="!autosave">
+          <span class="fa fa-fw fa-upload"></span>
+          Load
+        </button>
+        <button @click="clearLocalStorage" title="Clear localStorage">
+          <span class="fa fa-fw fa-trash"></span>
+          Clear
+        </button>
       </div>
-    </div>
-
-    <div>
-      <label>
-        <input type="checkbox" v-model="autosave">
-        Auto-save
-      </label>
     </div>
 
     <div class="file-storage">
       <h4>File</h4>
 
       <div class="actions">
-        <button @click="saveToFile">Save</button>
+        <button @click="saveToFile">
+          <span class="fa fa-fw fa-download"></span>
+          Save
+        </button>
 
         <div class="fileForm">
           <input ref="loadFile" type="file" accept="application/json,.json">
           <br>
-          <button @click="loadFromFile">Load</button>
+          <button @click="loadFromFile">
+            <span class="fa fa-fw fa-upload"></span>
+            Load
+          </button>
         </div>
       </div>
     </div>
@@ -140,24 +155,23 @@ export default {
 
 .local-storage,
 .file-storage {
-  align-content: flex-start;
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  margin-top: 10px;
+  h4 {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
 
-  > h4 {
-    margin: 0;
+    label {
+      font-size: 0.7em;
+    }
   }
 
-  button, input {
-    margin-bottom: 5px;
-    margin-top: 5px;
-  }
-}
+  .actions {
+    display: flex;
+    justify-content: space-between;
 
-.file-storage > h4 {
-  align-self: flex-start;
+    > * {
+      display: block;
+    }
+  }
 }
 </style>
