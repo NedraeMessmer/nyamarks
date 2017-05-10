@@ -13,7 +13,7 @@
         v-show="showPanel">
         <button
           type="button"
-          class="close-panel"
+          class="close-panel delete"
           @click="dismiss()">
           <span class="fa fa-fw fa-times"></span>
         </button>
@@ -134,17 +134,9 @@ export default {
 }
 
 .close-panel {
-  background-color: rgb(192, 0, 64);
   border-radius: 6px;
-  border: 0;
-  color: white;
-  cursor: pointer;
-  font-weight: bold;
-  height: 24px;
   position: absolute;
   right: 10px;
-  text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
   top: 10px;
-  width: auto;
 }
 </style>

@@ -25,8 +25,6 @@
 </template>
 
 <script>
-import {version} from '../package.json';
-
 import HeaderComponent from '@/components/Header.vue';
 import FooterComponent from '@/components/Footer.vue';
 import SidePanel from '@/components/SidePanel.vue';
@@ -45,18 +43,13 @@ export default {
   data() {
     return {
       showOptions: false,
-      env: process.env.NODE_ENV,
-      version,
     }
   },
 }
 </script>
 
 <style lang="scss">
-$default-text: rgb(44, 62, 80);
-$input-highlight: rgb(64, 0, 192);
-
-$font-stack: Lato, Helvetica, Arial, sans-serif;
+@import '/styles/variables';
 
 body {
   margin: 0;
@@ -99,12 +92,44 @@ textarea {
   padding: 5px;
 
   &::placeholder {
-    color: mix($default-text, white, 40%);
+    color: $placeholder-text;
   }
 }
 
 // Icon overrides
 .fa-animated {
   transition: all 0.25s;
+}
+
+// Buttons
+a.btn,
+button {
+  background-color: $btn-default-bg;
+  border: none;
+  border-radius: 2px;
+  box-shadow: inset 0 -3px rgba(0, 0, 0, 0.5);
+  color: $btn-default-color;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+  display: inline-block;
+  margin: 2px;
+  padding: 5px 8px 8px;
+  text-decoration: none;
+  text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
+  transition: background-color 0.25s ease-in;
+
+  &:hover {
+    background-color: $btn-default-hover-bg;
+  }
+
+  &.delete {
+    background-color: $btn-delete-bg;
+    color: $btn-delete-color;
+
+    &:hover {
+      background-color: $btn-delete-hover-bg;
+    }
+  }
 }
 </style>

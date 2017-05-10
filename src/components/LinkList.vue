@@ -12,7 +12,7 @@
           placeholder="Search title, description, tag"
           v-model="linkSearch">
         <button
-          class="clear-search"
+          class="clear-search delete"
           type="button"
           @click="clearSearch()">
           <span class="fa fa-fw fa-times"></span>
@@ -144,15 +144,8 @@ export default {
   }
 
   > .clear-search {
-    background-color: rgb(192, 0, 64);
     border-radius: 6px;
-    border: 0;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    height: 24px;
-    text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
-    width: auto;
+    font-size: smaller;
   }
 }
 

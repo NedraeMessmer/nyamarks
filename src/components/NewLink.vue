@@ -19,7 +19,10 @@
           <textarea placeholder="Description" v-model.trim="newLink.description"></textarea>
         </p>
 
-        <button type="submit">Add link</button>
+        <button type="submit">
+          <span class="fa fa-fw fa-plus"></span>
+          Add
+        </button>
       </div>
     </transition>
   </form>
@@ -81,26 +84,6 @@ export default {
 .new-link {
   input, textarea {
     width: 25vw;
-  }
-
-  button {
-    background-color: rgb(64, 0, 192);
-    border: none;
-    border-radius: 2px;
-    box-shadow: inset 0 -3px rgba(0, 0, 0, 0.5);
-    color: white;
-    cursor: pointer;
-    font-size: 1em;
-    font-weight: bold;
-    margin: 2px;
-    padding: 5px 8px 8px;
-    text-decoration: none;
-    text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
-    transition: background-color 0.2s ease-in;
-
-    &:hover {
-      background-color: mix(rgb(64, 0, 192), white, 50%);
-    }
   }
 }
 
