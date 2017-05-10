@@ -1,0 +1,22 @@
+// Global variables
+
+// Fonts
+$font-stack: Lato, Helvetica, Arial, sans-serif;
+
+// Text colors
+$default-text: rgb(44, 62, 80);
+$wip-text: rgb(255, 102, 0);
+$url-text: rgb(0, 128, 192);
+$placeholder-text: mix($default-text, white, 40%);
+
+// Buttons
+$btn-default-bg: rgb(64, 0, 192);
+$btn-default-hover-bg: mix($btn-default-bg, white, 50%);
+$btn-default-color: white;
+
+$btn-delete-bg: rgb(192, 0, 64);
+$btn-delete-hover-bg: mix($btn-delete-bg, white, 50%);
+$btn-delete-color: white;
+
+// Other
+$input-highlight: rgb(64, 0, 192);
