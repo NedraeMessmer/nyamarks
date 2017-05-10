@@ -107,9 +107,4 @@ textarea {
 .fa-animated {
   transition: all 0.25s;
 }
-
-// Other components
-.options-panel {
-  // width: 30vw;
-}
 </style>
