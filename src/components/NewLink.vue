@@ -63,7 +63,15 @@ export default {
       form.reset();
       this.newLink = {...newLink};
 
+      // Dispatch action
       this.$store.dispatch('addLink', {link});
+
+      // Autosave
+      if (this.$store.state.ui.autosave) {
+        const json = this.$store.getters.storeAsJson();
+
+        localStorage.setItem('nyamarks', json);
+      }
     },
   },
 }

@@ -4,6 +4,7 @@ import * as types from '../mutation-types';
 const state = {
   linkSearch: null,
   panels: {},
+  autosave: localStorage.getItem('autosave'),
 }
 
 const mutations = {
@@ -16,6 +17,11 @@ const mutations = {
   },
   [types.LINK_QUERY](state, {query}) {
     return state.linkSearch = query;
+  },
+  [types.AUTOSAVE](state, {value}) {
+    localStorage.setItem('autosave', JSON.stringify(value));
+
+    return state.autosave = value;
   },
 }
 

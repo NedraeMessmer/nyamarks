@@ -17,5 +17,5 @@ export const HIDE_EDIT_LINK = 'HIDE_EDIT_LINK';
 
 export const SHOW_PANEL = 'SHOW_PANEL';
 export const HIDE_PANEL = 'HIDE_PANEL';
-
 export const LINK_QUERY = 'LINK_QUERY';
+export const AUTOSAVE = 'AUTOSAVE';

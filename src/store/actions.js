@@ -57,3 +57,7 @@ export const linkQuery = ({commit}, {query}) => {
     resolve();
   });
 };
+
+export const autosave = ({commit}, {value}) => {
+  commit(types.AUTOSAVE, {value});
+};

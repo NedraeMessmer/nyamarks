@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import {mapGetters, mapActions} from 'vuex';
+import {mapGetters} from 'vuex';
 import {throttle} from 'lodash';
 
 import SidePanel from '@/components/SidePanel';
@@ -93,9 +93,16 @@ export default {
     },
   },
   methods: {
-    ...mapActions([
-      'removeLink',
-    ]),
+    removeLink({id}) {
+      this.$store.dispatch('removeLink', {id});
+
+      // Autosave
+      if (this.$store.state.ui.autosave) {
+        const json = this.$store.getters.storeAsJson();
+
+        localStorage.setItem('nyamarks', json);
+      }
+    },
     clearSearch() {
       return this.linkSearch = '';
     },

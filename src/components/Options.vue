@@ -16,6 +16,13 @@
       </div>
     </div>
 
+    <div>
+      <label>
+        <input type="checkbox" v-model="autosave">
+        Auto-save
+      </label>
+    </div>
+
     <div class="file-storage">
       <h4>File</h4>
 
@@ -29,14 +36,6 @@
         </div>
       </div>
     </div>
-
-    <div>
-      <label>
-        <input type="checkbox">
-        Automatically save links to localStorage
-        <span class="wip">(WIP)</span>
-      </label>
-    </div>
   </div>
 </template>
 
@@ -49,6 +48,17 @@ export default {
     // Load links from localStorage on startup
     this.loadFromLocalStorage();
   },
+  computed: {
+    autosave: {
+      get() {
+        return this.$store.state.ui.autosave;
+      },
+
+      set: function(value) {
+        return this.$store.dispatch('autosave', {value});
+      },
+    },
+  },
   methods: {
     saveToLocalStorage() {
       const json = this.$store.getters.storeAsJson();
@@ -58,6 +68,14 @@ export default {
 
     loadFromLocalStorage() {
       const stored = localStorage.getItem('nyamarks');
+      const autosave = localStorage.getItem('autosave');
+
+      // Set autosave for the app
+      if (autosave) {
+        const value = JSON.parse(autosave);
+
+        this.$store.dispatch('autosave', {value});
+      }
 
       if (!stored) {
         log.info('Initializing default links');
@@ -69,7 +87,8 @@ export default {
 
       log.info('Initializing with stored data');
 
-      return this.$store.dispatch('resetData', {data});
+      // Hydrate with the data
+      this.$store.dispatch('resetData', {data});
     },
 
     clearLocalStorage() {
@@ -98,12 +117,16 @@ export default {
         return this.$store.dispatch('resetData', {data})
           .then(() => {
             this.$refs.loadFile.value = null;
+
+            // Autosave
+            if (this.$store.state.ui.autosave) {
+              this.saveToLocalStorage();
+            }
           });
       };
 
       contents.readAsText(file);
     },
-
   },
 }
 </script>
