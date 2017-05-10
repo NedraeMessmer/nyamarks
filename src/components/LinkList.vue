@@ -83,7 +83,7 @@ export default {
     },
     linkSummary() {
       const total = this.$store.state.links.main.length;
-      const matching = this.matchingLinksCount(this.search);
+      const matching = this.matchingLinksCount(this.linkSearch);
 
       if (total === matching) {
         return `${total}`;
