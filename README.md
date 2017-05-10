@@ -1,6 +1,18 @@
-# nyamarks
+# nyamarks :hearts:
 
-> Portable offline bookmarks
+> Portable offline bookmarks using [vue.js](https://vuejs.org) and [vuex](https://vuex.vuejs.org)
+
+## TODO
+
+* [ ] Consolidate styles
+* [ ] Auto-save to localStorage by default
+* [ ] Better Import button
+  * [ ] Preview file to import
+* [ ] Responsive layout
+* [ ] Rework tag system
+  * [ ] Deletable tag pills
+  * [ ] Autocomplete tags
+* [ ] Maybe extension version (Chrome/Firefox)
 
 ## Build Setup
 
@@ -8,7 +20,7 @@
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# serve with hot reload at localhost:9000
 npm run dev
 
 # build for production with minification
