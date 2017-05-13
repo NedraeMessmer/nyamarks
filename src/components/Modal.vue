@@ -30,14 +30,14 @@
 
         <div class="actions">
           <button
-            v-if="okButton || okText"
+            v-if="okButton"
             @click="dismiss('ok')">
             {{okText}}
           </button>
 
           <button
             class="delete"
-            v-if="cancelButton || cancelText"
+            v-if="cancelButton"
             @click="dismiss('cancel')">
             {{cancelText}}
           </button>
@@ -59,7 +59,7 @@ export default {
     clickOverlayToClose: {type: Boolean, default: true},
     closeButton: {type: Boolean, default: true},
     closeWithEsc: {type: Boolean, default: true},
-    okButton: {type: Boolean, default: false},
+    okButton: {type: Boolean, default: true},
     okText: {type: String, default: 'OK'},
     onCancel: {type: Function},
     onDismiss: {type: Function},
@@ -68,7 +68,7 @@ export default {
   data() {
     return {
       modalClass: {},
-      showModalDelayed: false,
+      showModalDelayed: this.$store.state.ui.modals[this.name],
     }
   },
   computed: {
@@ -88,7 +88,7 @@ export default {
 
       // Use OK handler if available
       if (type === 'ok') {
-        handler = this.onOK || noop;
+        handler = this.onOk || noop;
       }
 
       // Use cancel handler if available, dismiss handler otherwise
