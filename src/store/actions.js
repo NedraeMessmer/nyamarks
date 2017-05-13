@@ -50,6 +50,14 @@ export const hidePanel = ({commit}, {name}) => {
   commit(types.HIDE_PANEL, {name});
 }
 
+export const showModal = ({commit}, {name}) => {
+  commit(types.SHOW_MODAL, {name});
+}
+
+export const hideModal = ({commit}, {name}) => {
+  commit(types.HIDE_MODAL, {name});
+}
+
 export const linkQuery = ({commit}, {query}) => {
   return new Promise(resolve => {
     commit(types.LINK_QUERY, {query});
