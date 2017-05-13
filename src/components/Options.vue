@@ -36,32 +36,74 @@
       <h4>File</h4>
 
       <div class="actions">
-        <button @click="saveToFile">
+        <button @click="saveFile">
           <span class="fa fa-fw fa-download"></span>
-          Save
+          Export
         </button>
 
         <div class="fileForm">
-          <input ref="loadFile" type="file" accept="application/json,.json">
-          <br>
-          <button @click="loadFromFile">
+          <input
+            ref="loadFile"
+            type="file"
+            accept="application/json,.json"
+            v-on:change="readFile">
+          <button @click="loadFile">
             <span class="fa fa-fw fa-upload"></span>
-            Load
+            Import
           </button>
         </div>
       </div>
+
+      <modal-dialog
+        name="importPreview"
+        title="Import links"
+        :on-dismiss="cancelImport"
+        ok-text="Import"
+        :on-ok="importData">
+        <div>
+          <p>You are about to import <strong>{{fileSummary.links.length}}</strong> links from <strong>{{selectedFilename}}</strong></p>
+          <p>Importing links will overwrite your current list of links.</p>
+        </div>
+      </modal-dialog>
+
+      <modal-dialog
+        name="importError"
+        title="Error!"
+        cancel-text="Dismiss"
+        :on-dismiss="cancelImport">
+        <div>
+          <p>Your file is malformed!</p>
+          <p>Please verify that the file you selected was exported from <strong>nyamarks</strong>.</p>
+        </div>
+      </modal-dialog>
     </div>
   </div>
 </template>
 
 <script>
 import log from '@/helpers/log';
+import ModalDialog from '@/components/Modal';
 
 export default {
   name: 'options',
+  components: {
+    ModalDialog,
+  },
+  data() {
+    return {
+      selectedFile: null,
+      selectedFilename: '',
+      fileSummary: {
+        links: [],
+      },
+    }
+  },
   created() {
     // Load links from localStorage on startup
     this.loadFromLocalStorage();
+
+    // Clear file info
+    this.clearLoadedFile();
   },
   computed: {
     autosave: {
@@ -110,7 +152,7 @@ export default {
       return localStorage.removeItem('nyamarks');
     },
 
-    saveToFile() {
+    saveFile() {
       const json = this.$store.getters.storeAsJson();
       const trigger = document.createElement('a');
       const event = new MouseEvent('click', {bubbles: true, cancelable: true});
@@ -122,25 +164,67 @@ export default {
       return trigger.dispatchEvent(event);
     },
 
-    loadFromFile() {
+    loadFile() {
+      const input = this.$refs.loadFile;
+      const event = new MouseEvent('click', {bubbles: true, cancelable: true});
+
+      input.dispatchEvent(event);
+    },
+
+    readFile() {
       const file = this.$refs.loadFile.files[0];
       const contents = new FileReader();
 
       contents.onload = event => {
         const data = JSON.parse(event.target.result);
 
-        return this.$store.dispatch('resetData', {data})
-          .then(() => {
-            this.$refs.loadFile.value = null;
+        // Cheap validation
+        if (!(data && data.links && data.links.main)) {
+          this.$store.dispatch('showModal', {name: 'importError'});
 
-            // Autosave
-            if (this.$store.state.ui.autosave) {
-              this.saveToLocalStorage();
-            }
-          });
+          return false;
+        }
+
+        this.selectedFile = data;
+        this.selectedFilename = file.name;
+
+        this.fileSummary = {
+          links: data.links.main,
+        };
+
+        this.$store.dispatch('showModal', {name: 'importPreview'});
       };
 
       contents.readAsText(file);
+    },
+
+    importData() {
+      const data = this.selectedFile;
+
+      return this.$store.dispatch('resetData', {data})
+        .then(() => {
+          this.$refs.loadFile.value = null;
+          this.clearLoadedFile();
+
+          // Autosave
+          if (this.$store.state.ui.autosave) {
+            this.saveToLocalStorage();
+          }
+        });
+    },
+
+    cancelImport() {
+      this.$refs.loadFile.value = null;
+      this.clearLoadedFile();
+    },
+
+    clearLoadedFile() {
+      this.selectedFile = null;
+      this.selectedFilename = '';
+
+      this.fileSummary = {
+        links: [],
+      };
     },
   },
 }
@@ -173,5 +257,9 @@ export default {
       display: block;
     }
   }
+}
+
+.file-storage input[type=file] {
+  display: none;
 }
 </style>
