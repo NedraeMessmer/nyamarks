@@ -2,17 +2,27 @@
 
 > Portable offline bookmarks using [vue.js](https://vuejs.org) and [vuex](https://vuex.vuejs.org)
 
+## Features
+
+* Save to and load from JSON. Export your links in one browser, import them in another
+* Save to localStorage for persistence
+* Autosave optional when adding, deleting or modifying a link
+* Search in titles, URLs, descriptions and tags
+* Click on a tag for easy filtering by that text
+
 ## TODO
 
+* [x] Auto-save to localStorage by default
 * [ ] Consolidate styles
-* [ ] Auto-save to localStorage by default
 * [ ] Better Import button
   * [ ] Preview file to import
 * [ ] Responsive layout
 * [ ] Rework tag system
   * [ ] Deletable tag pills
   * [ ] Autocomplete tags
+* [ ] Fuzzy(-ier) searching
 * [ ] Maybe extension version (Chrome/Firefox)
+  * [ ] Bookmarklet for basic functionality
 
 ## Build Setup
 
