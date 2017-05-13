@@ -25,7 +25,7 @@
 
 <script>
 export default {
-  name: 'side-panel',
+  name: 'SidePanel',
   props: {
     name: {type: String, required: true},
     position: {type: String, required: true},
@@ -35,8 +35,7 @@ export default {
     return {
       slideSide: this.position,
       panelClass: {
-        left: this.position === 'left',
-        right: this.position === 'right',
+        [this.position]: true,
       },
     }
   },
@@ -61,12 +60,14 @@ export default {
   },
   watch: {
     showPanel(next) {
-      // Dismiss panel when the escape key is released
-      if (next) {
-        return document.addEventListener('keyup', this.handleEscKey);
-      }
+      if (this.closeWithEsc) {
+        // Dismiss panel when the escape key is released
+        if (next) {
+          return document.addEventListener('keyup', this.handleEscKey);
+        }
 
-      return document.removeEventListener('keyup', this.handleEscKey);
+        return document.removeEventListener('keyup', this.handleEscKey);
+      }
     },
   },
 }
