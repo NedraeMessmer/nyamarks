@@ -14,8 +14,8 @@
 
 * [x] Auto-save to localStorage by default
 * [ ] Consolidate styles
-* [ ] Better Import button
-  * [ ] Preview file to import
+* [x] Better Import button
+  * [x] Preview file to import (shows # of links)
 * [ ] Responsive layout
 * [ ] Rework tag system
   * [ ] Deletable tag pills
