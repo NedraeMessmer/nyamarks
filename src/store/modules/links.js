@@ -2,59 +2,7 @@ import * as types from '../mutation-types';
 
 // Initial state
 const state = {
-  main: [
-    {
-      name: 'Google',
-      url: 'https://google.com',
-      description: 'Google Search',
-      tags: [
-        'google',
-        'search',
-      ],
-    },
-    {
-      name: 'YouTube',
-      url: 'https://youtube.com',
-      description: 'Videos',
-      tags: [
-        'google',
-        'video',
-        'youtube',
-      ],
-    },
-    {
-      name: 'Mozilla Developer Network',
-      url: 'https://developer.mozilla.org',
-      description: 'Developers!',
-      tags: [
-        'development',
-        'mozilla',
-        'search',
-      ],
-    },
-    {
-      name: 'Vue.js',
-      url: 'https://vuejs.org',
-      description: 'The progressive Javascript framework',
-      tags: [
-        'development',
-        'javascript',
-        'vue',
-        'vuejs',
-      ],
-    },
-    {
-      name: 'Devdocs.io',
-      url: 'https://devdocs.io',
-      description: 'DevDocs API documentation',
-      tags: [
-        'api',
-        'development',
-        'documentation',
-        'programming',
-      ],
-    },
-  ],
+  main: [],
 }
 
 // Indexing

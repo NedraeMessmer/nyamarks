@@ -2,16 +2,7 @@ import * as types from '../mutation-types';
 
 // Initial state
 const state = {
-  main: [
-    {name: 'search'},
-    {name: 'google'},
-    {name: 'video'},
-    {name: 'youtube'},
-    {name: 'bing'},
-    {name: 'microsoft'},
-    {name: 'developer'},
-    {name: 'mozilla'},
-  ],
+  main: [],
 }
 
 // Indexing

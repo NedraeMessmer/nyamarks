@@ -149,7 +149,15 @@ export default {
     },
 
     clearLocalStorage() {
-      return localStorage.removeItem('nyamarks');
+      localStorage.removeItem('nyamarks');
+
+      // Reset all tags
+      const data = {
+        links: [],
+        tags: [],
+      };
+
+      return this.$store.dispatch('resetData', {data});
     },
 
     saveFile() {
