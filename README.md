@@ -16,6 +16,7 @@
 * [ ] Consolidate styles
 * [x] Better Import button
   * [x] Preview file to import (shows # of links)
+  * [ ] Optimize import (only import new links) (?)
 * [ ] Responsive layout
 * [ ] Rework tag system
   * [ ] Deletable tag pills
@@ -23,6 +24,7 @@
 * [ ] Fuzzy(-ier) searching
 * [ ] Maybe extension version (Chrome/Firefox)
   * [ ] Bookmarklet for basic functionality
+* [ ] Desktop app version (?)
 
 ## Build Setup
 

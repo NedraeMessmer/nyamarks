@@ -25,7 +25,7 @@
         <div
           class="link-item-wrap"
           v-for="link in matchingLinks(this.linkSearch)"
-          :key="link">
+          :key="link.id">
           <link-item
             :link="link"
             @edit-link="editLink(link.id)"

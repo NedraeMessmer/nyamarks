@@ -52,17 +52,17 @@ export default {
       }
 
       this.$store.dispatch('updateLink', {id, link})
-      .then(() => {
-        // Autosave
-        if (this.$store.state.ui.autosave) {
-          const json = this.$store.getters.storeAsJson();
+        .then(() => {
+          // Autosave
+          if (this.$store.state.ui.autosave) {
+            const json = this.$store.getters.storeAsJson();
 
-          localStorage.setItem('nyamarks', json);
-        }
+            localStorage.setItem('nyamarks', json);
+          }
 
-        // Emit event
-        this.$emit('update-link', link);
-      });
+          // Emit event
+          this.$emit('update-link', link);
+        });
     },
   },
 }
