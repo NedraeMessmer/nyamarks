@@ -1,7 +1,7 @@
 <template>
   <div class="link-item">
     <div class="link">
-      <a :href="link.url" target="_blank">
+      <a :href="link.url" target="_blank" rel="noopener nofollow">
         <p class="name" v-if="link.name">
           {{link.name}}
         </p>

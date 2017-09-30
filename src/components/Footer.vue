@@ -1,11 +1,11 @@
 <template>
   <footer>
     <p class="by">
-      By <a href="https://github.com/NedraeMessmer" target="_blank">Nedrae</a> |
-      <a href="https://github.com/NedraeMessmer/nyamarks" target="_blank">
+      By <a href="https://github.com/NedraeMessmer" target="_blank" rel="noopener nofollow">Nedrae</a> |
+      <a href="https://github.com/NedraeMessmer/nyamarks" target="_blank" rel="noopener nofollow">
         <span class="fa fa-fw fa-github"></span>
       </a>
-      <a href="https://gitgud.io/Nedrae/nyamarks" target="_blank">
+      <a href="https://gitgud.io/Nedrae/nyamarks" target="_blank" rel="noopener nofollow">
         <span class="fa fa-fw fa-gitlab"></span>
       </a> |
       powered by <a href="https://vuejs.org" target="_blank">vue.js {{vueVersion}}</a>
